@@ -33,7 +33,7 @@
                     </p>
                 {% endif %}
                 <blockquote>
-                    <p>{{ challenge.description|escape|linebreaks }}</p>
+                    <p>{{ challenge.description|safe|linebreaks }}</p>
                 </blockquote>
 
             </div>

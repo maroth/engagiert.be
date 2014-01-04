@@ -7,6 +7,7 @@ from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as _
 
 from easy_thumbnails.fields import ThumbnailerImageField
+from tinymce.models import HTMLField
 
 from participe.organization.models import Organization
 from participe.enum import enum
@@ -38,8 +39,7 @@ class Challenge(models.Model):
     avatar = ThumbnailerImageField(
             upload_to='img/challenges', verbose_name=_("Avatar"))
     name = models.CharField(max_length=80, verbose_name=_("Name"))
-    description = models.TextField(
-            null=True, blank=True, verbose_name=_("Description"))
+    description = HTMLField(verbose_name=_("Description"))
     location = models.CharField(
             max_length=80, null=True, blank=True, verbose_name=_("Location"))
     duration = models.PositiveIntegerField(

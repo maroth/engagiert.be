@@ -4,7 +4,7 @@
 {% block title %}{% trans "Create challenge" %} - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <ul class="nav nav-tabs">  
+    <ul class="nav nav-tabs">
         <li class=""><a href="/">{% trans "What is Participe?" %}</a></li>
         <li class=""><a href="{% url challenge_list %}">{% trans "Challenges" %}</a></li>
         <!-- <li class=""><a href="{% url organization_list %}">{% trans "Organizations" %}</a></li> -->
@@ -27,9 +27,9 @@
                     <div class="row">
                         <div class="span4">
                             <div class="input">{% trans "Avatar:" %} {{ form.avatar }}{{ form.avatar.errors }}</div>
-                            <div {% if form.name.errors %}class="control-group error"{% else %}class="input"{% endif %}>{{ form.name }}{{ form.name.errors }}</div> 
-                            <div {% if form.description.errors %}class="control-group error"{% else %}class="input"{% endif %}>{{ form.description }}</div> 
-                            <div {% if form.location.errors %}class="control-group error"{% else %}class="input"{% endif %}>{{ form.location }}</div> 
+                            <div {% if form.name.errors %}class="control-group error"{% else %}class="input"{% endif %}>{{ form.name }}{{ form.name.errors }}</div>
+                            <div {% if form.description.errors %}class="control-group error"{% else %}class="input"{% endif %}>{{ form.description }}</div>
+                            <div {% if form.location.errors %}class="control-group error"{% else %}class="input"{% endif %}>{{ form.location }}</div>
                             <div {% if form.duration.errors %}class="control-group error"{% else %}class="input"{% endif %}>{% trans "Duration" %} {{ form.duration }} {% trans "hours" %}</div> 
 
                             {% if not form.organization.is_hidden %}

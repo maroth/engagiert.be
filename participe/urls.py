@@ -18,6 +18,7 @@ urlpatterns = patterns('',
 
     url(r'', include('social_auth.urls')),
     url(r'^captcha/', include('captcha.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),

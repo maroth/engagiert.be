@@ -9,6 +9,7 @@ from models import (Challenge, Participation, CHALLENGE_MODE,
                     PARTICIPATION_STATE)
 import participe.core.html5_widgets as widgets
 
+from tinymce.widgets import TinyMCE
 
 class CreateChallengeForm(forms.ModelForm):
     def __init__(self, user, *args, **kwargs):
@@ -38,6 +39,7 @@ class CreateChallengeForm(forms.ModelForm):
         """
 
     contact = forms.TextInput()
+    #description = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
     link = forms.TextInput()
     start_date = forms.DateField(
         input_formats=("%d.%m.%Y",),
@@ -59,9 +61,6 @@ class CreateChallengeForm(forms.ModelForm):
         widgets = {
             "name": forms.TextInput(
                 attrs={"placeholder": _("Challenge name")}),
-            "description": forms.Textarea(
-                attrs={"cols": 25, "rows": 5,
-                       "placeholder": _("Challenge description")}),
             "location": forms.TextInput(
                 attrs={"placeholder": _("Location")}),
             "duration": widgets.NumberInput(
@@ -154,9 +153,6 @@ class EditChallengeForm(forms.ModelForm):
                   "link", "start_date", "start_time",
                   "deleted_reason"]
         widgets = {
-            "description": forms.Textarea(
-                attrs={"cols": 25, "rows": 5, "class": "field span5",
-                       "placeholder": _("Challenge description")}),
             "location": forms.TextInput(
                 attrs={"placeholder": _("Location")}),
             "duration": widgets.NumberInput(

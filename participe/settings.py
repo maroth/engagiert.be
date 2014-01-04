@@ -32,10 +32,10 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = False
 
-MEDIA_ROOT = os.path.join(PROJECT_PATH , 'media')
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(PROJECT_PATH , 'static')
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 STATIC_URL = '/static/'
 
 # Additional locations of static files
@@ -110,6 +110,7 @@ INSTALLED_APPS = (
     'captcha',
     'easy_thumbnails',
     'auth_remember',
+    'tinymce',
     'django_extensions', #for shell_plus and runserver_plus
 
     'participe.core',
@@ -276,7 +277,7 @@ AUTH_REMEMBER_COOKIE_AGE = 365 * 24 * 60 * 60 # 1 year
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 ###############################################################################
-###                                                                         ###
+### Email                                                                   ###
 ###############################################################################
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = 'OVERRIDE ME IN LOCAL_SETTINGS'
@@ -285,7 +286,7 @@ EMAIL_HOST = 'OVERRIDE ME IN LOCAL_SETTINGS'
 #EMAIL_PORT = 587
 #EMAIL_USE_TLS = True
 
-EMAIL_SENDER = 'info@participe.ch'
+EMAIL_SENDER = 'engagiert.be@gmail.com'
 
 TEMPLATED_EMAIL_BACKEND = 'templated_email.backends.vanilla_django.TemplateBackend'
 TEMPLATED_EMAIL_TEMPLATE_DIR = 'emails/'
@@ -293,3 +294,15 @@ TEMPLATED_EMAIL_FILE_EXTENSION = 'email'
 
 # Override some settings
 from local_settings import *
+
+###############################################################################
+### TinyMCE                                                                 ###
+###############################################################################
+
+TINYMCE_JS_URL = os.path.join(MEDIA_ROOT, "js/tinymce/tinymce.min.js")
+TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "js/tinymce/")
+TINYMCE_DEFAULT_CONFIG = {'theme': 'modern', 'relative_urls': False}
+TINYMCE_SPELLCHECKER = False
+TINYMCE_COMPRESSOR = False
+TINYMCE_FILEBROWSER = False
+
