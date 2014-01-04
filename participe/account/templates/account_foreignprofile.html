@@ -30,17 +30,7 @@
                 {% if need_to_know %}
                     <address>
                         <p>
-                            {{ profile.address_1 }}<br>
-                            {% if profile.address_2 %}
-                                {{ profile.address_2 }}<br>
-                            {% endif %}
-                            {{ profile.postal_code}} {{ profile.city }}<br>
-                            {{ profile.country.name }}
-                        </p>
-                        <p>
                             {{ account.email }}<br>
-                            {{ profile.phone_number}}<br>
-                            {{ profile.birth_day }}
                         </p>
                     </address>
                 {% endif %}

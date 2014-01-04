@@ -1,15 +1,19 @@
-Participe
-=========
+Engagiert.be
+============
 
-Participe is a nonprofit organization that aims to increase the amount of volunteer work by providing a friction-less platform for offering jobs and finding volunteers.
+Engagiert.be ist eine Online-Börse für Freiwilligenarbeit im Raum Bern. Auf Engagiert.be können Vereine, Firmen,
+Familien oder Einzelpersonen Möglichkeiten zur freiwilligen Hilfe im Raum Bern ausschreiben. Engagierte Menschen
+können ihnen dann helfen, Bern kulturell, sozial oder ökologisch ein kleines Bisschen besser zu machen.
 
-Licence
--------
-This Django project is licensed under the [Affero General Public License](http://www.gnu.org/licenses/agpl-3.0.html). You are free to use this code however you wish, but you must provie your source code to all users of the software.
+Ursprung und Lizenz
+-------------------
+Engagiert.be ist eine Abspaltung des Projekts Participe, und verwendet dessen Quellcode als Basis. Wie Participe ist
+Engagiert.be unter der [Affero General Public License](http://www.gnu.org/licenses/agpl-3.0.html) lizenziert. Das
+heisst dass alle den Quellcode unentgeltlich verwenden können, aber sich verpflichten alle ihre Änderunbgen am Code
+allen Benutzern ihrer Software unter der gleichen Lizenz weiter zu geben.
 
-Contributions
--------------
-If you want to help our cause, we would be very glad to consider your pull requests. If you are interested in joining the team, please contact me at markus.roth@participe.ch
-
+Mithilfe
+--------
+Falls du mithelfen möchtest, freue ich mich über Hilfe jeder Art. Schreib mir doch ein Mail: maroth@gmail.com.
 
 

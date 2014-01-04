@@ -18,84 +18,11 @@
             <div class="well">
                 <img src="{% thumbnail profile.avatar|default:'img/default.jpg' 400x200 crop %}" alt="">
                 <h2>{{ user.get_full_name }}</h2>
-                {% if sum_of_hours_spent %}
-                    <p>{% trans "Hour registered" %}: <span class="badge">{{ sum_of_hours_spent }}</span></p>
-                {% endif %}
-                <h4>{% trans "Contact" %}</h4>
-                <p class="note">
-                    <span class="label label-info">{% trans "Privacy information" %}</span><br>
-                    {% trans "This information can only be seen by organizers of challenges you participate in." %}
-                </p>
-                <address>
-                    <p>
-                        {{ profile.address_1 }}<br>
-                        {% if profile.address_2 %}
-                            {{ profile.address_2 }}<br>
-                        {% endif %}
-                        {{ profile.postal_code}} {{ profile.city }}<br>
-                        {{ profile.country.name }}
-                    </p>
-                    <p>
-                        {{ user.email }}<br>
-                        {{ profile.phone_number}}<br>
-                        {{ profile.birth_day }}
-                    </p>
-                </address>
                 <a class="btn btn-primary" href="/accounts/profile/edit/">{% trans "Edit profile" %}</a><br>
             </div>
         </div>
 
         <div class="span9">
-            {% for participations, header in user_participations %}
-                {% if participations %}
-                <h3>{% trans "My Challenges" %}</h3>
-                <h4>{{ header }}</h4>
-                <ul class="thumbnails per3">
-                    {% for participation in participations %}
-                        {% if participation.status == PARTICIPATION_STATE.ACKNOWLEDGED %}
-                        <li class="span9">
-                            <a class="thumbnail" href="{{ participation.challenge.get_absolute_url }}">
-                                <img src="{{ participation.challenge.avatar|default:'img/default.jpg'|thumbnail_url:'span9_wide' }}" alt="{{ participation.challenge.name }}">
-                                <h4>{{ participation.challenge.name }} ({{ participation.challenge.duration }}h)</h4>
-                                <p>
-                                    <strong>{{ participation.challenge.start_date|date:"l j. F o" }}</strong><br>
-                                    {{ participation.challenge.location }}
-                                </p>
-                                <p>{% trans "What did you do?" %}</p>
-                                <blockquote>{{ participation.selfreflection_activity_text }}</blockquote>
-                                <p>{% trans "What did you learn?" %}</p>
-                                <blockquote>{{ participation.selfreflection_learning_text }}</blockquote>
-                                {% if participation.acknowledgement_text %}
-                                    <p>{% trans "Comment by the challenge organizer" %}</p>
-                                    <blockquote>{{ participation.acknowledgement_text }}</blockquote>
-                                {% endif %}
-                            </a>
-                        </li>
-                        {% else %}
-                        <li class="span3">
-                            <a class="thumbnail" href="{{ participation.challenge.get_absolute_url }}">
-                                <img src="{% thumbnail participation.challenge.avatar|default:'img/default.jpg' 340x200 crop %}" alt="{{ participation.challenge.name }}">
-                                <h4>{{ participation.challenge.name }}</h4>
-                                <p>
-                                    <strong>{{ participation.challenge.start_date|date:"l j. F o" }}</strong><br>
-                                    {{ participation.challenge.location }}
-                                </p>
-                                {% if participation.status == PARTICIPATION_STATE.WAITING_FOR_CONFIRMATION %}
-                                    <span class="label label-warning">{% trans "Waiting for confirmation" %}</span>
-                                {% elif participation.status == PARTICIPATION_STATE.WAITING_FOR_SELFREFLECTION %}
-                                    <span class="label label-warning">{% trans "Write self-reflection" %}</span>
-                                {% elif participation.status == PARTICIPATION_STATE.WAITING_FOR_ACKNOWLEDGEMENT %}
-                                    <span class="label label-warning">{% trans "Waiting for acknowledgement" %}</span>
-                                {% elif participation.status == PARTICIPATION_STATE.ACKNOWLEDGED %}
-                                {% endif %}
-                            </a>
-                        </li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            {% endfor %}
-
             {% if admin_challenges.0.0 or admin_challenges.1.0 or admin_challenges.2.0 %}
                 <h3>{% trans "Challenges you are responsible for" %}</h3>
                 {% for challenges, header in admin_challenges %}
@@ -113,72 +40,15 @@
                                         <strong>{{ challenge.start_date|date:"l j. F o" }}</strong><br>
                                         {{ challenge.location }}
                                     </p>
-
-                                    {% if challenge.has_waiting_for_confirmation %}
-                                        <span class="label label-warning">{% trans "Pending applications" %}</span>
-                                    {% endif %}
-
-                                    {% if challenge.has_waiting_for_acknowledgement %}
-                                        <span class="label label-warning">{% trans "Pending experience reports" %}</span>
-                                    {% endif %}
-
-                                    {% if challenge.is_overdue and challenge.status != CHALLENGE_STATUS.COMPLETED %}
-                                        <span class="label label-warning">{% trans "Mark as complete" %}</span>
-                                    {% endif %}
                                 </a>
                             </li>
                         {% endfor %}
                     </ul>
                     {% endif %}
                 {% endfor %}
+            {% else %}
+                <p>Du hast noch keine Engagements ausgeschrieben.</p>
             {% endif %}
-
-            {% if participations_cancelled_by_user %}
-            <div class="well">
-                <h3>{% trans "Participations you cancelled" %}</h3>
-                <p>{% trans "This information can be seen by challenge organizers when you apply to or sign up to their challenges." %}</p>
-                <table class="table">
-                    <tr>
-                        <th>{% trans "Challenge name" %}</th>
-                        <th>{% trans "Signed up" %}</th>
-                        <th>{% trans "Cancelled" %}</th>
-                        <th>{% trans "Reason"%}</th>
-                    </tr>
-                    {% for participation in participations_cancelled_by_user %}
-                    <tr>
-                        <td><a href="{{ participation.challenge.get_absolute_url }}">{{ participation.challenge.name }}</a></td>
-                        <td>{{ participation.date_created }}</td>
-                        <td>{{ participation.date_cancelled }}</td>
-                        <td>{{ participation.cancellation_text }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            {% endif %}
-
-            {% if participations_cancelled_by_admin %}
-            <div class="well">
-                <h3>{% trans "Challenges you were removed from" %}</h3>
-                <p>{% trans "This information can be seen by challenge organizers when you apply to or sign up to their challenges." %}</p>
-                <table class="table">
-                    <tr>
-                        <th>{% trans "Challenge name" %}</th>
-                        <th>{% trans "Signed up" %}</th>
-                        <th>{% trans "Cancelled" %}</th>
-                        <th>{% trans "Reason"%}</th>
-                    </tr>
-                    {% for participation in participations_cancelled_by_admin %}
-                    <tr>
-                        <td><a href="{{ participation.challenge.get_absolute_url }}">{{ participation.challenge.name }}</a></td>
-                        <td>{{ participation.date_created }}</td>
-                        <td>{{ participation.date_cancelled }}</td>
-                        <td>{{ participation.cancellation_text }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            {% endif %}
-
         </div>
     </div>
 {% endblock %}

@@ -58,13 +58,8 @@ class Challenge(models.Model):
             verbose_name=_("Contact Person"))
 
     is_alt_person = models.BooleanField(default=False)
-    alt_person_fullname = models.CharField(
-            max_length=80, null=True, blank=True, verbose_name=_("Full name"))
-    alt_person_email = models.EmailField(
-            max_length=80, null=True, blank=True, verbose_name=_("E-mail"))
-    alt_person_phone = models.CharField(
-            max_length=15, blank=True, default='',
-            verbose_name=_("Phone Number"))
+    contact = models.CharField(max_length=1000, null=True, blank=True, verbose_name=_("Contact"))
+    link = models.URLField(max_length=1000, null=True, blank=True, verbose_name=_("Link"))
 
     start_date = models.DateField(verbose_name=_("Start Date"))
     start_time = models.TimeField(verbose_name=_("Start Time"))

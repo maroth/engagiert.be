@@ -29,8 +29,8 @@
     <form id="signup" enctype="multipart/form-data" action="." method="post">{% csrf_token %}
         <div class="row">
             <div class="span6 offset3 well">
-                <h3>{% trans "Create a new account" %}</h3>
-                <p>{% trans "This information is only visible to people who need to see it, and is private by default. To understand who can see what if this information, please read our Privacy Policy" %}</p>
+                <h3>Neues Konto erfassen</h3>
+                <p>Um auf Engagiert.be eigene Engagements auszuschreiben brauchst du ein Benutzerkonto.</p>
                 <table cellpadding="5">
                     {% for field in uform%}
                     <tr>
@@ -49,41 +49,9 @@
                     {% endfor %}
                 </table>
 
-                <p>{% trans "By signing up, you accept the" %} <a href="/about/tnc/">{% trans "terms and conditions" %}</a>.</p>
+                <p>Indem du dich anmeldest, akzeptierst du unsere <a href="/about/tnc/">Spielregeln</a>.</p>
                 <div class="input"><input type="submit" form="signup" class="btn btn-primary btn-large" value="{% trans 'Sign up' %}" /></div>
             </div>
         </div>
     </form>
-
-    <script>
-        $(function() {
-            options = {
-                dateFormat: 'dd.mm.yy',
-                changeYear: true,
-                yearRange: "-100:",
-                changeMonth: true
-            }
-            $('input[name=birth_day]').datepicker(options);
-        });
-    </script>
-
-    {% comment %}
-    <div id="fb-root"></div>
-    <script type="text/javascript">
-        window.fbAsyncInit = function() {
-            FB.init({appId: {{ fb_app_id }}, status: true, cookie: true, xfbml: true, oauth: true});
-
-            window.setTimeout(function() {
-                FB.Canvas.setAutoResize();
-            }, 250);
-        };
-
-        (function() {
-            var e = document.createElement('script'); e.async = true;
-            e.src = document.location.protocol +
-                '//connect.facebook.net/ru_RU/all.js';
-            document.getElementById('fb-root').appendChild(e);
-        }());
-    </script>
-    {% endcomment %}
 {% endblock %}

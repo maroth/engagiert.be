@@ -7,7 +7,7 @@
     <ul class="nav nav-tabs">  
         <li class=""><a href="/">{% trans "What is Participe?" %}</a></li>
         <li class=""><a href="{% url challenge_list %}">{% trans "Challenges" %}</a></li>
-        <li class=""><a href="{% url organization_list %}">{% trans "Organizations" %}</a></li>
+        <!-- <li class=""><a href="{% url organization_list %}">{% trans "Organizations" %}</a></li> -->
         <li class="active"><a href="{% url challenge_create %}">{% trans "Create a Challenge" %}</a></li>
     </ul> 
 
@@ -39,12 +39,14 @@
                         </div>
                         <div class="span4">
                             <div class="input">{% trans "Contact person:" %}</div>
-                            <div {% if form.contact.errors %}class="text-error"{% else %}class="input"{% endif %}>{{ form.contact }}{{ form.contact.errors }}</div> 
-                            <div {% if form.alt_person_fullname.errors %}class="control-group error"{% else %}class="input"{% endif %}>{{ form.alt_person_fullname }}{{ form.alt_person_fullname.errors }}</div> 
+                            <div {% if form.contact.errors %}class="text-error"{% else %}class="input"{% endif %}>{{ form.contact }}{{ form.contact.errors }}</div>
+                            <div class="input">Link (optional):</div>
+                            <div {% if form.link.errors %}class="text-error"{% else %}class="input"{% endif %}>{{ form.link}}{{ form.link.errors }}</div>
+                            <div {% if form.alt_person_fullname.errors %}class="control-group error"{% else %}class="input"{% endif %}>{{ form.alt_person_fullname }}{{ form.alt_person_fullname.errors }}</div>
                             <div {% if form.alt_person_email.errors %}class="control-group error"{% else %}class="input"{% endif %}>{{ form.alt_person_email }}{{ form.alt_person_email.errors }}</div> 
                             <div {% if form.alt_person_phone.errors %}class="control-group error"{% else %}class="input"{% endif %}>{{ form.alt_person_phone }}{{ form.alt_person_phone.errors }}</div> 
                             <div {% if form.start_date.errors or form.start_time.errors %}class="control-group error"{% else %}class="input"{% endif %}>{% trans "Start date" %} {{ form.start_date }}{{ form.start_date.errors }} {% trans "Time" %} {{ form.start_time }}{{ form.start_time.errors }}</div>
-                            <div {% if form.application.errors %}class="text-error"{% else %}class="input"{% endif %}>{% trans "Application" %} {{ form.application }}</div> 
+                            <!-- <div {% if form.application.errors %}class="text-error"{% else %}class="input"{% endif %}>{% trans "Application" %} {{ form.application }}</div> -->
                         </div>                    
                         <div class="span2">
                             <div><input type="submit" class="btn btn-primary btn-large" value="{% trans 'Create this challenge' %}" /></div>

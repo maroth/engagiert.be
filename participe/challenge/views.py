@@ -214,7 +214,7 @@ def challenge_edit(request, challenge_id):
                 "challenge": challenge,
                 "challenge_url": challenge.get_full_url(request),
             })
-            locale.setlocale(locale.LC_TIME, "de_CH.utf8")
+            #locale.setlocale(locale.LC_TIME, "de_CH.UTF8")
 
             participations = Participation.objects.all().filter(
                 Q(challenge=challenge) &

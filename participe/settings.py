@@ -30,7 +30,7 @@ SITE_ID = 1
 
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+USE_TZ = False
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH , 'media')
 MEDIA_URL = '/media/'
@@ -106,7 +106,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.flatpages',
 
-    'south',
     'social_auth',
     'captcha',
     'easy_thumbnails',

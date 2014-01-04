@@ -104,6 +104,7 @@ class UserProfileForm(forms.ModelForm):
         if self.instance and self.instance.pk:
             pass
 
+        """
         self.fields["address_1"].required = True
         self.fields["postal_code"].required = True
         self.fields["city"].required = True
@@ -125,20 +126,20 @@ class UserProfileForm(forms.ModelForm):
         self.fields["country"].choices = COUNTRIES
         self.fields["country"].initial = "CH"
 
-    #captcha = CaptchaField()
     birth_day = forms.DateField(
             input_formats=("%d.%m.%Y",),
             widget=forms.DateInput(
                     format="%d.%m.%Y",
                     attrs={"class": "input-small"}))
+        """
+    captcha = CaptchaField()
 
     class Meta:
         model = UserProfile
-        fields = ["avatar",
-            "address_1", "address_2", "postal_code", "city", "country",
-            #"gender",
-            "birth_day", "phone_number", "receive_newsletter", "privacy_mode",
-            ]
+        fields = ["avatar", "receive_newsletter"]
+            #"address_1", "address_2", "postal_code", "city", "country", "gender",
+            #"birth_day", "phone_number", "receive_newsletter", "privacy_mode",
+        """
         widgets = {
             "address_1": forms.TextInput(
                     attrs={"placeholder": _("Address 1")}),
@@ -155,6 +156,7 @@ class UserProfileForm(forms.ModelForm):
                     attrs={"placeholder": _("Phone number")}),
             "privacy_mode": forms.RadioSelect(),
             }
+            """
 
     def save(self, commit=True):
         instance = super(UserProfileForm, self).save(commit=False)
@@ -176,15 +178,18 @@ class UserEditForm(forms.ModelForm):
         self.fields['email'].widget.attrs['class'] = 'disabled'
         self.fields['email'].widget.attrs['readonly'] = True
 
+        """
         self.fields["address_1"].required = True
         self.fields["postal_code"].required = True
         self.fields["city"].required = True
         self.fields["country"].required = True
         self.fields["birth_day"].required = True
+        """
 
         self.fields["first_name"].label = _("First name")
         self.fields["last_name"].label = _("Last name")
         self.fields["email"].label = _("Email")
+        """
         self.fields["address_1"].label = _("Street and house number")
         self.fields["address_2"].label = _("Additional address info")
         self.fields["postal_code"].label = _("Postal Code")
@@ -193,12 +198,14 @@ class UserEditForm(forms.ModelForm):
         self.fields["birth_day"].label = _("Date of birth")
         self.fields["phone_number"].label = _("Phone number")
         self.fields["privacy_mode"].label = _("Privacy")
-        self.fields["receive_newsletter"].label =\
-                _("I want to revieve the Participe newsletter")
+        """
+        self.fields["receive_newsletter"].label = _("I want to revieve the Participe newsletter")
 
         # Override countries order in choice-list
+        """
         self.fields["country"].choices = COUNTRIES
         self.fields["country"].initial = "CH"
+        """
 
     #username = forms.CharField(widget=forms.TextInput(attrs={
     #        "placeholder": "User name", "value": ""}))
@@ -211,20 +218,21 @@ class UserEditForm(forms.ModelForm):
     email = forms.EmailField(
             widget=widgets.EmailInput(
                     attrs={"placeholder": _("E-mail"), "value": ""}))
+    """
     birth_day = forms.DateField(
             input_formats=("%d.%m.%Y",),
             widget=forms.DateInput(
                     format="%d.%m.%Y",
                     attrs={"class": "input-small"}))
+    """
 
     class Meta:
         model = UserProfile
-        fields = [#"username",
-            "first_name", "last_name", "email",
-            "address_1", "address_2", "postal_code", "city", "country",
+        fields = ["first_name", "last_name", "email", "receive_newsletter"]
+            #"address_1", "address_2", "postal_code", "city", "country",
             #"gender",
-            "birth_day", "phone_number", "receive_newsletter", "privacy_mode",
-            ]
+            #"birth_day", "phone_number", "receive_newsletter", "privacy_mode",
+        """
         widgets = {
             "address_1": forms.TextInput(
                     attrs={"placeholder": _("Address 1")}),
@@ -241,6 +249,7 @@ class UserEditForm(forms.ModelForm):
                     attrs={"placeholder": _("Phone number")}),
             "privacy_mode": forms.RadioSelect(),
             }
+        """
 
     def save(self, commit=True):
         instance = super(UserEditForm, self).save(commit=False)

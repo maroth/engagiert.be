@@ -91,13 +91,13 @@ def signup(request):
             # Create User Profile
             profile = UserProfile.objects.create(
                 user=user,
-                address_1=pform.cleaned_data["address_1"],
-                address_2=pform.cleaned_data["address_2"],
-                postal_code=pform.cleaned_data["postal_code"],
-                city=pform.cleaned_data["city"],
-                country=pform.cleaned_data["country"],
-                birth_day=pform.cleaned_data["birth_day"],
-                phone_number=pform.cleaned_data["phone_number"],
+                #address_1=pform.cleaned_data["address_1"],
+                #address_2=pform.cleaned_data["address_2"],
+                #postal_code=pform.cleaned_data["postal_code"],
+                #city=pform.cleaned_data["city"],
+                #country=pform.cleaned_data["country"],
+                #birth_day=pform.cleaned_data["birth_day"],
+                #phone_number=pform.cleaned_data["phone_number"],
                 receive_newsletter=pform.cleaned_data["receive_newsletter"],
                 confirmation_code=confirmation_code,
             )

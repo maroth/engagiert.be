@@ -108,7 +108,7 @@ msgstr "Bestimme den Schutz deiner Privatsphäre"
 
 #: account/forms.py:122
 msgid "I want to get the Participe newsletter"
-msgstr "Ich möchte den Participe Newsletter abonnieren"
+msgstr "Ich möchte den Engagiert.be Newsletter abonnieren"
 
 #: account/forms.py:144 account/forms.py:230 account/models.py:36
 #: organization/forms.py:48 organization/models.py:21
@@ -130,7 +130,7 @@ msgstr "Privatshphäre-Modus"
 
 #: account/forms.py:197
 msgid "I want to revieve the Participe newsletter"
-msgstr "Ich möchte den Participe Newsletter abonnieren"
+msgstr "Ich möchte den Engagiert.be Newsletter abonnieren"
 
 #: account/forms.py:284
 msgid "Account with such e-mail address does not exist."
@@ -172,13 +172,13 @@ msgstr ""
 msgid "Normal"
 msgstr ""
 "Sicher: Dein Name, dein Foto, und die Engagements and denen mit mitmachst "
-"und mitgemacht hast sind für alle Mitglieder von Participe sichtbar. Alle "
+"und mitgemacht hast sind für alle Mitglieder von Engagiert.be sichtbar. Alle "
 "anderen Angaben sind lediglich für Organisator_innen von Engagements "
 "sichtbar, zu denen du dich angemeldet hast."
 
 #: account/models.py:28 challenge/models.py:39 organization/models.py:15
 msgid "Avatar"
-msgstr "Bild"
+msgstr "Bild (freiwillig)"
 
 #: account/models.py:30 challenge/models.py:219 challenge/models.py:284
 msgid "User"
@@ -210,7 +210,7 @@ msgstr "Benutzerprofile"
 
 #: account/views.py:124 account/templates/account_edit.html:20
 msgid "Welcome to Participe"
-msgstr "Willkommen bei Participe"
+msgstr "Willkommen bei Engagiert.be"
 
 #: account/views.py:176
 msgid "The link has been expired. Please, sign-up again."
@@ -246,7 +246,7 @@ msgstr "Dein Passwort wurde geändert."
 
 #: account/views.py:525
 msgid "New password for Participe"
-msgstr "Neues Passwort bei Participe"
+msgstr "Neues Passwort bei Engagiert.be"
 
 #: account/views.py:533 account/views.py:559
 msgid "An error has been acquired."
@@ -257,7 +257,7 @@ msgstr "Es ist ein Fehler aufgetreten."
 #: challenge/templates/challenge_create.html:8 home/templates/home_base.html:6
 #: organization/templates/organization_base.html:6
 msgid "What is Participe?"
-msgstr "Was ist Participe?"
+msgstr "Was ist Engagiert.be?"
 
 #: account/templates/account_base.html:11
 #: challenge/templates/challenge_base.html:7
@@ -307,7 +307,7 @@ msgid ""
 msgstr ""
 "Um sicherzustellen, dass du ein Mensch (und kein Computerprogramm) bist, "
 "haben wir dir eine Email an die Adresse %(address)s gesendet. Bitte klicke "
-"den Link darin, um dein Konto bei Participe zu aktivieren."
+"den Link darin, um dein Konto bei Engagiert.be zu aktivieren."
 
 #: account/templates/account_crop_avatar.html:74
 msgid "Crop."
@@ -323,7 +323,7 @@ msgid ""
 "information about your challenges and challenge participatsions and can not "
 "be undone."
 msgstr ""
-"Bist du sicher, dass du dein Participe-Konto löschen willst? Dies wird all "
+"Bist du sicher, dass du dein Engagiert.be-Konto löschen willst? Dies wird all "
 "deineDaten löschen und kann nicht rückgängig gemacht werden."
 
 #: account/templates/account_delete.html:15
@@ -345,7 +345,7 @@ msgstr "Abbrechen"
 #: account/templates/account_edit.html:14
 #: account/templates/account_myprofile.html:44
 msgid "Edit profile"
-msgstr "Benutzerprofil bearbeiten"
+msgstr "Profil bearbeiten"
 
 #: account/templates/account_edit.html:22
 msgid ""
@@ -353,12 +353,12 @@ msgid ""
 "challenges, we will need some more information about you. Please complete "
 "your personal information in the form below."
 msgstr ""
-"Auf Participe finden wir es wichtig, dass Organisator_innen und "
+"Auf Engagiert.be finden wir es wichtig, dass Organisator_innen und "
 "Teilnehmer_innen miteinander kommunizieren können. Wir brauchen daher von "
 "dir noch einige Angaben, bevor deine Anmeldung abgeschlossen ist. Diese "
 "Daten sind nur für Menschen sichtbar, welche einen guten Grund dazu haben. "
 "Bitte lies für weitere Angaben zu Schutz deiner Privatsphäre unsere <a "
-"href='http://participe.ch/about/privacy_policy/'>Datenschutzbestimmungen</a>."
+"href='http://www.engagiert.be/about/privacy_policy/'>Datenschutzbestimmungen</a>."
 
 #: account/templates/account_edit.html:39
 msgid "Save changes"
@@ -526,7 +526,7 @@ msgstr "Warte auf Bestätigung"
 
 #: account/templates/account_myprofile.html:100
 msgid "Challenges you are responsible for"
-msgstr "Von dir administrierte Engagements"
+msgstr "Meine Engagements"
 
 #: account/templates/account_myprofile.html:118
 msgid "Pending applications"
@@ -625,7 +625,7 @@ msgid ""
 msgstr ""
 "Wir haben dir ein E-Mail an die Adresse %(email)s geschickt. Bitte klicke "
 "auf den Link im Email, damit du ein neues Passwort setzen und dich dann "
-"wieder bei Participe anmelden kannst."
+"wieder bei Engagiert.be anmelden kannst."
 
 #: account/templates/account_signup.html:4
 #: account/templates/account_signup.html:54
@@ -642,8 +642,8 @@ msgid ""
 "private by default. To understand who can see what if this information, "
 "please read our Privacy Policy"
 msgstr ""
-"<p>Um dich bei Participe zu Engagements anzumelden, oder gar selbst welche "
-"zu erfassen, brauchst du ein Konto bei Participe. </p><p>Auf dieser Seite "
+"<p>Um dich bei Engagiert.be zu Engagements anzumelden, oder gar selbst welche "
+"zu erfassen, brauchst du ein Konto bei Engagiert.be. </p><p>Auf dieser Seite "
 "kannst du eins erfassen. Dazu musst einige persönliche Daten über dich "
 "angeben, damit die Organisator_innen von Engagements dich erkennen und "
 "kontaktieren können.</p><p>Diese Information kann nur von Menschen gesehen "
@@ -661,7 +661,7 @@ msgstr "Allgemeinen Geschäftsbedingungen"
 
 #: account/templates/account_welcome.html:8
 msgid "Welcome to Participe!"
-msgstr "Willkommen bei Participe!"
+msgstr "Willkommen bei Engagiert.be!"
 
 #: account/templates/account_welcome.html:11
 msgid ""
@@ -671,10 +671,9 @@ msgid ""
 "challenges/\">list of challenges</a>?"
 msgstr ""
 "Danke, dass du deine E-Mail-Adresse bestätigt hast. Du bist nun bei "
-"Participe angemeldet und eingeloggt. Jetzt kanns losgehen! Sieh doch gleich "
-"nach, ob du ein Engagement findest, das dir zusagt. <a href="
-"\"http://participe.ch/challenges/\">Hier findest du die Liste der aktuellen Engagements</"
-"a>."
+"Engagiert.be angemeldet und eingeloggt. Jetzt kanns losgehen! "
+"<a href=""\"http://engagiert.be/challenges/create\">Schreibe doch gleich dein erstes Engagement aus!</"
+"a>"
 
 #: challenge/forms.py:34 challenge/forms.py:159 organization/forms.py:26
 msgid "Affiliate different person"
@@ -708,7 +707,7 @@ msgstr "Bitte fülle dieses Feld aus."
 #: challenge/forms.py:209
 msgid "Reason for deletion (at least 20 symbols)"
 msgstr ""
-"Warum löschst du dein Benutzerkonto? Dein Feedback hilft uns, Participe zu "
+"Warum löschst du dein Benutzerkonto? Dein Feedback hilft uns, Engagiert.be zu "
 "verbessern."
 
 #: challenge/forms.py:267 challenge/models.py:223
@@ -878,7 +877,7 @@ msgstr "%(challenge_name)s wurde abgesagt"
 
 #: challenge/views.py:121
 msgid "Participation Confirmation for %(challenge_name)"
-msgstr "Anmeldebestätigung für %(challenge_name)s auf Participe"
+msgstr "Anmeldebestätigung für %(challenge_name)s auf Engagiert.be"
 
 #: challenge/views.py:247
 #, python-format
@@ -899,13 +898,13 @@ msgstr "Danke für deinen Einsatz bei %(challenge_name)s!"
 #, python-format
 msgid "You were not accepted for %(challenge_name)s"
 msgstr ""
-"Deine Bewerbung für '%(challenge_name)s' auf Participe war erfolgreich!"
+"Deine Bewerbung für '%(challenge_name)s' auf Engagiert.be war erfolgreich!"
 
 #: challenge/views.py:412 challenge/views.py:458
 #, python-format
 msgid "You were accepted for %(challenge_name)s"
 msgstr ""
-"Deine Bewerbung für '%(challenge_name)s' auf Participe war erfolgreich!"
+"Deine Bewerbung für '%(challenge_name)s' auf Engagiert.be war erfolgreich!"
 
 #: challenge/templates/challenge_create.html:4
 msgid "Create challenge"
@@ -920,10 +919,8 @@ msgid ""
 "You can enter your Challenge here. If you have any questions, don't hesitate "
 "to <a href=\"mailto:markus.roth@participe.ch\">contact Markus</a>."
 msgstr ""
-"Du kannst dein Engagement hier eintragen, damit es auf Participe erscheint "
-"und sich Gleichgesinnte eintragen können. Falls du Schwierigkeiten, Fragen, "
-"oder Anmerkungen hast, zögere nicht <a href=\"mailto:markus.roth@participe.ch"
-"\">Markus Roth</a> zu kontaktieren."
+"Du kannst dein Engagement hier eintragen, damit es auf Engagiert.be erscheint "
+"und sich Gleichgesinnte bei dir melden können. "
 
 #: challenge/templates/challenge_create.html:29
 #: challenge/templates/challenge_edit.html:16
@@ -1218,7 +1215,7 @@ msgstr "Anmeldung erforderlich"
 
 #: challenge/templates/challenge_detail.html:356
 msgid "You must have a user account to participate in this challenge."
-msgstr "Du musst ein Participe Konto haben, um hier mit zu machen."
+msgstr "Du musst ein Engagiert.be Konto haben, um hier mit zu machen."
 
 #: challenge/templates/challenge_detail.html:361
 #: organization/templates/organization_detail.html:30
@@ -2346,7 +2343,7 @@ msgstr "Du bist nicht berechtigt, dies zu tun."
 
 #: home/templates/home.html:6
 msgid "Participe is an online platform for volunteering work"
-msgstr "Participe ist eine Plattform für freiwillige Arbeit"
+msgstr "Engagiere dich in Bern"
 
 #: home/templates/home.html:9
 #, python-format
@@ -2359,10 +2356,10 @@ msgid ""
 "            "
 msgstr ""
 "\n"
-"            Auf Participe kannst du freiwillige Engagements finden und "
-"erfassen. Möchtest du neue Leute kennen lernen, Spass haben und dabei die "
-"Welt ein kleines Bisschen besser machen? <a href=\"%(challenge_list)s"
-"\">Finde jetzt dein erstes Engagement auf Participe!</a>\n"
+"            Auf Engagiert.be kannst du freiwillige Engagements finden und "
+"erfassen. Möchtest du neue Leute kennen lernen, Spass haben und dabei den "
+"Raum Bern ein kleines Bisschen besser machen? <a href=\"%(challenge_list)s"
+"\">Finde jetzt dein erstes Engagement auf Engagiert.be!</a>\n"
 "            "
 
 #: home/templates/terms_and_conditions.html:4
@@ -2489,7 +2486,7 @@ msgstr ""
 
 #: organization/templates/organization_iframe.html:16
 msgid "upcoming challenges on Participe"
-msgstr "nächste Engagements auf Participe"
+msgstr "nächste Engagements auf Engagiert.be"
 
 #: organization/templates/organization_iframe.html:28
 #: organization/templates/organization_iframe.html:51
@@ -2498,7 +2495,7 @@ msgstr "Diese Organisation hat gegenwärtig keine Engagements"
 
 #: organization/templates/organization_iframe.html:35
 msgid "past challenges on Participe"
-msgstr "Vergangene Engagements auf Participe"
+msgstr "Vergangene Engagements auf Engagiert.be"
 
 #: organization/templates/organization_iframe.html:56
 msgid "Total number of hours worked for the organization"
@@ -2631,11 +2628,11 @@ msgstr "Allgemeine Geschäftsbedingungen"
 
 #: templates/base.html:107
 msgid "Fork us on GitHub"
-msgstr "Participe ist freie Software"
+msgstr "Engagiert.be ist freie Software"
 
 #: templates/base.html:111
 msgid "About Participe"
-msgstr "Über Participe"
+msgstr "Über Engagiert.be"
 
 #: templates/base.html:113
 msgid "Team"
@@ -2654,7 +2651,7 @@ msgid ""
 "Thank you for joining Participe! We are glad you want to help us make the "
 "world a better place."
 msgstr ""
-"Danke, dass du bei Participe mitmachst! Wir sind froh, dass auch du die Welt "
+"Danke, dass du bei Engagiert.be mitmachst! Wir sind froh, dass auch du die Welt "
 "ein kleines Bisschen besser machen willst."
 
 #: templates/emails/account_confirmation.email:10
@@ -2680,17 +2677,16 @@ msgid ""
 "comments, or suggestions please let us know! You can contact the lead "
 "developer, <a href='mailto:markus.roth@participe.ch'>Markus Roth</a>."
 msgstr ""
-"Wir hoffen, dass du eine gute Erfahrung mit Participe machst. Falls du eine "
+"Wir hoffen, dass du eine gute Erfahrung mit Engagiert.be machst. Falls du eine "
 "Frage, einen Kommentar oder einen Verbesserungsvorschlag hast, lass es uns "
-"wissen! Du kannst den Software-Entwickler <a href='mailto:markus."
-"roth@participe.ch'>Markus Roth</a> kontaktieren."
+"wissen! Antworte einfach auf dieses E-Mail."
 
 #: templates/emails/account_password_renew.email:7
 msgid ""
 "You, or someone pretending to be you, requested a password reset on "
 "Participe."
 msgstr ""
-"Du, oder jemand der sich als dich ausgibt, hat auf Participe um ein neues "
+"Du, oder jemand der sich als dich ausgibt, hat auf Engagiert.be um ein neues "
 "Passwort gebeten."
 
 #: templates/emails/account_password_renew.email:10
@@ -2714,7 +2710,7 @@ msgstr "Alles Gute,"
 
 #: templates/emails/base.email:15
 msgid "The Participe team"
-msgstr "Das Participe Team"
+msgstr "Das Engagiert.be Team"
 
 #: templates/emails/challenge_application_changed.email:6
 #, python-format
@@ -2728,7 +2724,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Du hast dich auf Participe um die Teilnahme beim Engagement <a "
+"Du hast dich auf Engagiert.be um die Teilnahme beim Engagement <a "
 "href='%(challenge_url)s'>%(challenge_name)s</a> beworben. <br>Die "
 "Organisator_innen des Engagements haben nun beschlossen, dass keine "
 "Bewerbung mehr für dieses Engagement nötig ist. Alle Bewerber_innen, welche "
@@ -2746,7 +2742,7 @@ msgid ""
 "%(challenge_name)s</a> has been changed.<br/>\n"
 msgstr ""
 "\n"
-"Du bist auf Participe bei <a href='%(challenge_url)s'>%(challenge_name)s</a> "
+"Du bist auf Engagiert.be bei <a href='%(challenge_url)s'>%(challenge_name)s</a> "
 "angemeldet. <br> Die Organisator_innen des Engagements haben das Datum oder "
 "die Uhrzeit des Engagements verändert. Falls du beim neuen Zeitpunkt nicht "
 "mitmachen kannst, melde dich bitte so bald als möglich vom Engagement ab. \n"
@@ -2840,11 +2836,11 @@ msgstr ""
 "\n"
 "<p>Vielen Dank für deine Teilnahme an <a href='%(challenge_url)s'>"
 "%(challenge_name)s</a>! Die Organisator_innen haben das Engagement auf "
-"Participe als beendet markiert.</p><p>Du bist nun eingeladen, zwei Kurze "
+"Engagiert.be als beendet markiert.</p><p>Du bist nun eingeladen, zwei Kurze "
 "Texte zu schreiben, in welchen du sagst was du während dem Engagement "
 "gemacht und was du gelernt hast. Nachdem die Organisator_innen diese "
 "Antworten bestätigt haben, erscheinen sie zusammen mit Details des "
-"Engagements in deinem persönlichen Profil auf Participe. Die Text durch "
+"Engagements in deinem persönlichen Profil auf Engagiert.be. Die Text durch "
 "Organisator_innen von Engagements zu denen du dich anmeldest sichtbar und "
 "können dir bei Bewerbungen auf Anspruchsvollere Engagements helfen.</p><p>Um "
 "diesen letzten Teil des Engagements abzuschliessen, gehe bitte hierhin:<br>  "
