@@ -39,7 +39,6 @@ class CreateChallengeForm(forms.ModelForm):
         """
 
     contact = forms.TextInput()
-    #description = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
     link = forms.TextInput()
     start_date = forms.DateField(
         input_formats=("%d.%m.%Y",),
