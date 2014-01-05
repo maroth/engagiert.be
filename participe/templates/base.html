@@ -66,8 +66,8 @@
                                         <img src="{{ MEDIA_URL }}img/footer-link-fb.png" alt="{% trans "login with facebook" %}">
                                         {% trans "Log in with Facebook" %}
                                     </a>
-                                    <a class="btn" href='/accounts/signup/'>{% trans "No account yet?" %}</a>
                                     <a class="btn" href='/accounts/login/'>{% trans "Log in" %}</a>
+                                    <a class="btn" href='/accounts/signup/'>{% trans "No account yet?" %}</a>
                                 {% endif %}
                                 <!--
                                 <select name="language" class="input-small" onchange="document.forms['locale'].submit();">
@@ -94,22 +94,13 @@
                 <hr>
                 <div class="row footer">
                     <div class="span4">
-                        <ul>
-                            <li><a href="/about/organizers/">{% trans "For Organizers" %}</a></li>
-                            <li><a href="/about/media/">{% trans "For Media" %}</a></li>
-                        </ul>
+                        <a href="/about/media/">Über Engagiert.be</a>
+                    </div>
+                    <div class="span4 centered-text">
+                        <a href="/about/tnc/">Spielregeln</a>
                     </div>
                     <div class="span4">
-                        <ul>
-                            <li><a href="/about/tnc/">Spielregeln</a></li>
-                            <li><a href="/about/sourcecode/">{% trans "Fork us on GitHub" %}</a></li>
-                        </ul>
-                    </div>
-                    <div class="span4">
-                        <ul>
-                            <li><a href="/about/team/">{% trans "Team" %}</a></li>
-                            <li><a href="/about/feedback/">{% trans "Feedback" %}</a></li>
-                        </ul>
+                        <a href="/about/sourcecode/" class="pull-right">Engagiert.be ist freie Software</a>
                     </div>
                 </div>
             {% endblock %}

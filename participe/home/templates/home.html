@@ -2,13 +2,43 @@
 {% load i18n %}
 
 {% block extra_content %}
-    <div class="hero-unit centered-text">
-        <h3>{% trans "Participe is an online platform for volunteering work" %}</h3>
-        <p>
-            {% url challenge_list as challenge_list %}
-            {% blocktrans %}
-            On Participe you can find and post opportunities to volunteer your time for a good cause. Do you want to meet new people, have fun, and make the world a better place? <a href="{{ challenge_list }}">Find your first challenge on Participe right now!</a>
-            {% endblocktrans %}
+    <div class="hero-unit title-hero">
+    </div>
+    <div class="hero-unit centered-text ">
+        <h3 on-image>Engagiere dich. In Bern.</h3>
+        <p on-image>
+            Auf Engagiert.be kannst du freiwillige Engagements finden und
+            erfassen. Möchtest du neue Leute kennen lernen, Spass haben und dabei den
+            Raum Bern ein kleines Bisschen besser machen? <a href="/challenges/">
+            Finde jetzt dein erstes Engagement auf Engagiert.be</a>!
         </p>
+    </div>
+    <div class="row">
+        <div class="span6">
+            <h4>
+                In der Freizeit etwas gutes tun
+            </h4>
+            <p>
+                Hast du Lust, dich in der Hauptstadtregion sozial, ökologisch oder kulturell zu engagieren,
+                dabei Spass zu haben und neue Leute kennen zu lernen? Dann ist Engagiert.be genau das richtige für
+                dich!
+            </p>
+                Hier findest du <a href="/challenges">viele Möglichkeiten dich zu engagieren</a>!
+            <p>
+            </p>
+        </div>
+        <div class="span6">
+            <h4>
+                Hilfe für dein Projekt finden
+            </h4>
+            <p>
+                Setzt du dich für etwas ein, was dir wichtig ist? Könntest du dabei tatkräftige Unterstützung
+                gebrauchen? Schreibe deine Aktion hier aus, damit Gleichgesinnte mitmachen können. Willkommen sind
+                alle Arten von Einsätzen.
+            </p>
+            <p>
+                Um ein Engagement ausschreiben zu können, brauchst du ein <a href="/accounts/signup">Benutzerkonto</a>.
+            </p>
+        </div>
     </div>
 {% endblock %}
