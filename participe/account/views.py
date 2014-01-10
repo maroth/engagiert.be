@@ -30,6 +30,7 @@ from participe.account.models import PRIVACY_MODE
 from participe.core.user_tests import user_profile_completed
 from participe.challenge.models import (Challenge, CHALLENGE_STATUS, PARTICIPATION_STATE)
 from participe.organization.models import Organization
+from participe.account.utils import get_admin_challenges
 
 try:
     from cStringIO import StringIO
@@ -260,40 +261,6 @@ def view_profile(request, user_id):
         profile = None
     ctx.update({"profile": profile})
 
-    participations_current = Participation.objects.filter(
-        user=account,
-        challenge__is_deleted=False,
-        status__in=[
-            PARTICIPATION_STATE.CONFIRMED,
-            PARTICIPATION_STATE.WAITING_FOR_CONFIRMATION,
-            PARTICIPATION_STATE.WAITING_FOR_ACKNOWLEDGEMENT,
-            PARTICIPATION_STATE.WAITING_FOR_SELFREFLECTION, ]
-    )
-    ctx.update({"participations_current": participations_current})
-
-    participations_acknowledged = Participation.objects.filter(
-        user=account,
-        challenge__is_deleted=False,
-        status=PARTICIPATION_STATE.ACKNOWLEDGED,
-    )
-    ctx.update({"participations_acknowledged": participations_acknowledged})
-
-    participations_cancelled_by_user = Participation.objects.filter(
-        user=account,
-        challenge__is_deleted=False,
-        status=PARTICIPATION_STATE.CANCELLED_BY_USER,
-    )
-    ctx.update({"participations_cancelled_by_user":
-                    participations_cancelled_by_user})
-
-    participations_cancelled_by_admin = Participation.objects.filter(
-        user=account,
-        challenge__is_deleted=False,
-        status=PARTICIPATION_STATE.CANCELLED_BY_ADMIN,
-    )
-    ctx.update({"participations_cancelled_by_admin":
-                    participations_cancelled_by_admin})
-
     affiliated_organizations = Organization.objects.filter(
         affiliated_users=account,
     )
@@ -301,28 +268,6 @@ def view_profile(request, user_id):
 
     if user.is_authenticated():
         admin_challenges = get_admin_challenges(user)
-        desired_challenges = Challenge.objects.filter(
-            pk__in=Participation.objects.filter(
-                user=account,
-                challenge__is_deleted=False,
-                status=PARTICIPATION_STATE.WAITING_FOR_CONFIRMATION
-            ).values_list("challenge_id", flat=True))
-
-        # Related to viewer Challenges
-        related_participated_challenges = [
-            participation.challenge for participation in
-            participations_current.exclude(
-                status=PARTICIPATION_STATE.WAITING_FOR_CONFIRMATION
-            )
-            if participation.challenge in admin_challenges]
-        ctx.update({"related_participated_challenges":
-                        related_participated_challenges})
-
-        related_desired_challenges = [
-            challenge for challenge in desired_challenges
-            if challenge in admin_challenges]
-        ctx.update({"related_desired_challenges":
-                        related_desired_challenges})
 
     ctx.update({"PRIVACY_MODE": PRIVACY_MODE})
     return render_to_response('account_foreignprofile.html',
@@ -336,22 +281,12 @@ def view_myprofile(request):
 
     admin_challenges = get_admin_challenges(user).order_by("start_date")
 
-    admin_challenges_upcoming = admin_challenges.exclude(
-        pk__in=Participation.objects.filter(
-            status__in=[
-                PARTICIPATION_STATE.WAITING_FOR_CONFIRMATION,
-                PARTICIPATION_STATE.WAITING_FOR_ACKNOWLEDGEMENT
-            ]).values_list("challenge_id", flat=True)
-    ).filter(
+    admin_challenges_upcoming = admin_challenges.filter(
         status=CHALLENGE_STATUS.UPCOMING,
         start_date__gte=datetime.date.today()
     )
 
-    admin_challenges_completed = admin_challenges.exclude(
-        pk__in=Participation.objects.filter(
-            status=PARTICIPATION_STATE.WAITING_FOR_ACKNOWLEDGEMENT
-        ).values_list("challenge_id", flat=True)
-    ).filter(
+    admin_challenges_completed = admin_challenges.filter(
         status=CHALLENGE_STATUS.COMPLETED
     )
 

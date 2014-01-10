@@ -54,8 +54,7 @@ class CreateChallengeForm(forms.ModelForm):
     class Meta:
         model = Challenge
         fields = ["avatar", "name", "description", "location", "duration",
-                  "is_contact_person", "is_alt_person", "contact",
-                  "link", "start_date", "start_time",
+                  "contact", "link", "start_date", "start_time",
                   "organization"]
         widgets = {
             "name": forms.TextInput(
@@ -78,12 +77,6 @@ class CreateChallengeForm(forms.ModelForm):
             "link": forms.TextInput(
                 attrs={"placeholder": "Link zu weiteren Informationen zu deinem Engagement",
                        "class": "input-xl"}),
-
-            #"start_date": widgets.DateInput(attrs={"class": "input-small"}),
-            #"start_time": widgets.TimeInput(
-            #        attrs={"class": "input-mini"}),
-
-            #"application": forms.RadioSelect(),
         }
 
     def clean_avatar(self):
@@ -127,23 +120,11 @@ class EditChallengeForm(forms.ModelForm):
         super(EditChallengeForm, self).__init__(*args, **kwargs)
         self.user = user
 
-        self.contact_choices = [
-            ("me", "%s (%s)" % (self.instance.contact_person.get_full_name(),
-                                self.instance.contact_person.email)),
-            ("he", _("Affiliate different person")), ]
-        self.fields["contact"].choices = self.contact_choices
-        if self.instance.is_contact_person:
-            self.fields["contact"].initial = "me"
-        else:
-            self.fields["contact"].initial = "he"
-
         self.fields.keyOrder = ["avatar", "name", "description", "location",
                                 "duration", "contact", "link",
                                 "start_date", "start_time",
                                 "deleted_reason"]
 
-    contact = forms.ChoiceField(
-        widget=forms.RadioSelect())
     start_date = forms.DateField(
         input_formats=("%d.%m.%Y",),
         widget=forms.DateInput(
@@ -153,24 +134,34 @@ class EditChallengeForm(forms.ModelForm):
     class Meta:
         model = Challenge
         fields = ["avatar", "name", "description", "location", "duration",
-                  "is_contact_person", "is_alt_person", "contact",
+                  "is_contact_person", "contact",
                   "link", "start_date", "start_time",
                   "deleted_reason"]
         widgets = {
+            "name": forms.TextInput(
+                attrs={
+                    "class": "input-xl"
+                }),
             "location": forms.TextInput(
-                attrs={"placeholder": _("Location")}),
+                attrs={
+                    "class": "input-xl"
+                }),
             "duration": widgets.NumberInput(
-                attrs={'min': '1', 'max': '10', 'step': '1',
+                attrs={'min': '1', 'max': '100', 'step': '1',
                        "class": "input-mini"}),
             "contact": forms.TextInput(
-                attrs={"placeholder": _("Contact")}),
-            #"alt_person_email": forms.TextInput(attrs={"placeholder": _("E-mail")}),
+                attrs={
+                    "class": "input-xl"
+                }),
+
             "link": widgets.URLInput(
-                attrs={"placeholder": _("Link")}),
-            #"start_date": widgets.DateInput(attrs={"class": "input-small"}),
+                attrs={
+                    "class": "input-xl"
+                }),
+
             "start_time": widgets.TimeInput(
-                attrs={"class": "input-mini"}),
-            #"application": forms.RadioSelect(),
+                attrs={"class": "input-large"}),
+
             "deleted_reason": forms.Textarea(
                 attrs={"cols": 25, "rows": 5,
                        "placeholder": _("Reason for deletion "
@@ -183,31 +174,3 @@ class EditChallengeForm(forms.ModelForm):
                 _("Value should be greater or equal 1"))
         return self.cleaned_data["duration"]
 
-    def clean_contact(self):
-        if self.cleaned_data["contact"] == 'me':
-            self.cleaned_data["is_contact_person"] = True
-            self.cleaned_data["is_alt_person"] = False
-        elif self.cleaned_data["contact"] == 'he':
-            self.cleaned_data["is_contact_person"] = False
-            self.cleaned_data["is_alt_person"] = True
-        else:
-            self._errors["contact"] = self.error_class(
-                [_("This field is required."), ])
-            del self.cleaned_data["contact"]
-        return self.cleaned_data["contact"]
-
-    def clean(self):
-        if self.cleaned_data["is_alt_person"] == True:
-            if not self.cleaned_data["alt_person_fullname"]:
-                self._errors["alt_person_fullname"] = self.error_class(
-                    [_("This field is required."), ])
-                del self.cleaned_data["alt_person_fullname"]
-            if not self.cleaned_data["alt_person_email"]:
-                self._errors["alt_person_email"] = self.error_class(
-                    [_("This field is required."), ])
-                del self.cleaned_data["alt_person_email"]
-            if not self.cleaned_data["alt_person_phone"]:
-                self._errors["alt_person_phone"] = self.error_class(
-                    [_("This field is required."), ])
-                del self.cleaned_data["alt_person_phone"]
-        return self.cleaned_data

@@ -1,55 +1,90 @@
-{% extends 'challenge_base.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %}{% trans "Edit challenge" %} - {{ block.super }}{% endblock %}
-{% load thumbnail %}
+{% block title %}Engagement bearbeiten - {{ block.super }}{% endblock %}
 
-{% block extra_content %}
-    <style type="text/css">
-        ul li {list-style: none;}
-        #ui-datepicker-div {display: none;}
-    </style>
+{% block content %}
+    <ul class="nav nav-tabs">
+        <li class=""><a href="/">{% trans "What is Participe?" %}</a></li>
+        <li class=""><a href="{% url challenge_list %}">{% trans "Challenges" %}</a></li>
+        <!-- <li class=""><a href="{% url organization_list %}">{% trans "Organizations" %}</a></li> -->
+        <li class="active"><a>Engagement bearbeiten</a></li>
+    </ul>
 
-    <form id="edit-form" enctype="multipart/form-data" action="." class="" method="post">{% csrf_token %}
-        <div class="row">
-            <div class="span12">
+    <div class="main_container">
+        <style type="text/css" scoped>
+            ul li {list-style: none;}
+            #ui-datepicker-div {display: none;}
+        </style>
 
-                <div class="input">Bild: </div>
-                <img src="{{ form.instance.avatar|default:'img/default.jpg'|thumbnail_url:'span9_wide' }}" alt="">
-
-                <table>
-                    {% for field in form %}
-                    <tr>
-                        {% ifnotequal field.name "deleted_reason" %}
-                        <th align="right">{{ field.label_tag }}</th>
-                        <td>
-                            <div {% if field.errors %}class="control-group error"{% else %}class="input"{% endif %}>{{ field }}{{ field.errors }}</div>
-                        </td>
-                        {% endifnotequal %}
-                    </tr>
-                    {% endfor %}
-                </table>
-
-                <input id="save" name="save" type="submit" class="btn btn-primary" value="{% trans 'Save Changes' %}" />
-                <input id="delete-btn" name="delete-btn" type="button" class="btn btn-danger " value="{% trans 'Delete challenge' %}">
-                <div id="delete-form">
-                    <table>
-                        <tr>
-                            <th>{{ form.deleted_reason.label_tag }}</th>
-                            <td>{{ form.deleted_reason }}</td>
-                        </tr>
-                    </table>
-                    <div>
-                        <input id="delete" name="delete" type="button" class="btn btn-danger" value="{% trans 'Delete' %}" />
-                        <input id="cancel-btn" name="cancel-btn" type="button" class="btn" value="{% trans 'Cancel' %}">
+        <form id="edit-form" enctype="multipart/form-data" action="." method="post">{% csrf_token %}
+            <div class="row">
+                <div class="span12">
+                    <h3>Engagement bearbeiten</h3>
+                    <div {% if form.name.errors %}class="control-group error"{% else %}class="input"{% endif %}>
+                        <h5>Titel</h5>
+                        {{ form.name }}{{ form.name.errors }}
                     </div>
+
+                    <div {% if form.description.errors %}class="control-group error"{% else %}class="input"{% endif %}>
+                        <h5>Beschreibung</h5>
+                        {{ form.description }}
+                    </div>
+
+                    <div class="input">
+                        <h5>Bild</h5>
+                        {{ form.avatar }}{{ form.avatar.errors }}
+                    </div>
+
+                    <div {% if form.location.errors %}class="control-group error"{% else %}class="input"{% endif %}>
+                        <h5>Ort</h5>
+                        {{ form.location }}
+                    </div>
+
+                    <div {% if form.start_date.errors or form.start_time.errors %}class="control-group error"{% else %}class="input"{% endif %}>
+                        <h5>Datum</h5>
+                        {{ form.start_date }}{{ form.start_date.errors }}
+                        <h5>Uhrzeit</h5>
+                        {{ form.start_time }}{{ form.start_time.errors }}
+                    </div>
+
+                    <div {% if form.duration.errors %}class="control-group error"{% else %}class="input"{% endif %}>
+                        <h5>Ungefähre Dauer in Stunden</h5>
+                        {{ form.duration }} {% trans "hours" %}
+                    </div>
+
+                    {% if not form.organization.is_hidden %}
+                        <div {% if form.organization.errors %}class="control-group error"{% else %}class="input"{% endif %}>
+                            {% trans "Affiliate with organization" %} {{ form.organization }}{{ form.organization.errors }}
+                        </div>
+                    {% endif %}
+
+
+                    <div {% if form.contact.errors %}class="text-error"{% else %}class="input"{% endif %}>
+                        <h5>Kontakt</h5>
+                        {{ form.contact }}{{ form.contact.errors }}
+                    </div>
+
+                    <div {% if form.link.errors %}class="text-error"{% else %}class="input"{% endif %}>
+                        <h5>Link zu weiteren Informationen (Freiwillig)</h5>
+                        {{ form.link}}{{ form.link.errors }}
+                    </div>
+
+                    <!--
+                    <div {% if form.application.errors %}class="text-error"{% else %}class="input"{% endif %}>
+                        {% trans "Application" %} {{ form.application }}
+                    </div>
+                    -->
+
+                    <input type="submit" class="btn btn-primary btn-large" value="Engagement speichern" />
+                    <input type="button" id="delete-button" class="btn btn-danger" value="Engagement löschen" />
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
 
-    <div id="dialog">
-        <span>{% trans "Do you really want to delete this challenge?" %}</span>
+        <div id="dialog">
+            <span>Bist du sicher, dass du dieses Engagement löschen möchtest?</span>
+        </div>
     </div>
 
     <script>
@@ -61,55 +96,41 @@
                 changeMonth: true
             }
             $('input[name=start_date]').datepicker(options);
+            $('input[name=alt_date]').datepicker(options);
         });
 
-        $("#id_deleted_reason").keyup(function() {
-            if (this.value.length >= 20){
-                $('input[id="delete"]').removeAttr('disabled');
-                $('input[id="delete"]').attr('class','btn-primary');
-            } else {
-                $('input[id="delete"]').attr('disabled','disabled');
-                $('input[id="delete"]').attr('class','btn');
+        $("#dialog").dialog({
+            autoOpen: false,
+            draggable: true,
+            resizable: false,
+            modal: true,
+            buttons: {
+                "Engagement löschen": function(){
+                    var input = $("<input>").attr("type", "hidden").attr("name", "delete").val("delete");
+                    $("#edit-form").append($(input));
+                    $("#edit-form").submit();
+                },
+                "Abbrechen": function(){
+                    $(this).dialog('close');
+                }
             }
         });
 
-        $(document).ready(function(){
-            $('input[id="delete"]').attr('disabled','disabled');
-            $('input[id="delete"]').attr('class','btn');
-
-            $("#delete-form").hide();
-            $("#delete-btn").click(function(){
-                $("#delete-btn").hide();
-                $('#delete-form').show("slow");
-                return false;
-            });
-            $("#cancel-btn").click(function(){
-                $('#delete-form').hide("slow");
-                $("#delete-btn").show("slow");
-                return false;
-            });
-
-            //Delete confirmation dialog window
-            $("#dialog").dialog({
-                autoOpen: false,
-                draggable: true,
-                resizable: false,
-                modal: true,
-                buttons: {
-                    "Delete": function(){
-                        var input = $("<input>").attr("type", "hidden").attr("name", "delete").val("delete");
-                        $("#edit-form").append($(input));
-                        $("#edit-form").submit();
-                    },
-                    "Close": function(){
-                        $(this).dialog('close');
-                    }
-                }
-            });
-
-            $('input[id="delete"]').click(function(){
-                $("#dialog").dialog("open");
-            });
+        $('input[id="delete-button"]').click(function(){
+            $("#dialog").dialog("open");
         });
+
+
+        {% comment %}
+        $(function() {
+            options = {
+                showNowButton: true,
+                showDeselectButton: true,
+                defaultTime: '',
+                showCloseButton: true
+            }
+            $('input[name=start_time]').timepicker(options);
+        });
+        {% endcomment %}
     </script>
 {% endblock %}

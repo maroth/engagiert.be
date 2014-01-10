@@ -95,16 +95,11 @@ def challenge_edit(request, challenge_id):
         if form.is_valid():
             form.save()
 
-            ctx = {}
-            ctx.update({
-                "user": user,
-                "challenge": challenge,
-                "challenge_url": challenge.get_full_url(request),
-            })
-
             if "delete" in request.POST:
                 challenge.is_deleted = True
                 challenge.save()
+
+            return redirect("challenge_list")
 
     return render_to_response('challenge_edit.html', RequestContext(request, {'form': form}))
 

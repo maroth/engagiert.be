@@ -37,6 +37,8 @@
 
                     <div class="input">
                         <h5>Bild</h5>
+                        <p>Bitte wähle ein Bild aus, welches dein Engagement gut vertritt und Lust macht,
+                            mit zu machen. Ein gutes Bild kann dir helfen, engagierte Menschen zu motivieren.</p>
                         {{ form.avatar }}{{ form.avatar.errors }}
                     </div>
 
@@ -65,7 +67,7 @@
 
 
                     <div {% if form.contact.errors %}class="text-error"{% else %}class="input"{% endif %}>
-                        <h5>Kontakt (Freiwillig)</h5>
+                        <h5>Kontakt</h5>
                         {{ form.contact }}{{ form.contact.errors }}
                     </div>
 
