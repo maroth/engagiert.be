@@ -1,9 +1,9 @@
-from django.shortcuts import get_object_or_404, redirect, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
 from participe.account.utils import is_challenge_admin
-from participe.challenge.models import Challenge, Participation, Comment
+from participe.challenge.models import Challenge, Comment
 
 
 # Prevents for all registered users (not only challenge admins)
@@ -19,7 +19,7 @@ def challenge_admin(func):
         participation_id = kwargs.get("participation_id", None)
         if participation_id:
             participation = get_object_or_404(
-                    Participation, pk=participation_id)
+                    pk=participation_id)
             challenge = participation.challenge
 
         comment_id = kwargs.get("comment_id", None)

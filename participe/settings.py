@@ -152,23 +152,7 @@ LOGGING = {
 
 # Put here the proper domain name. For testing needs this value could be
 # overriden in local_settings.py (or not)
-DOMAIN_NAME = "participe.ch"
-
-###############################################################################
-### DJANGO CELERY AND MESSAGE BROKER SECTION                                ###
-###############################################################################
-import djcelery
-djcelery.setup_loader()
-
-INSTALLED_APPS += (
-        "djcelery",
-        "djkombu",)
-
-BROKER_BACKEND = "djkombu.transport.DatabaseTransport"
-
-CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
-CELERY_IMPORTS = (
-        "participe.challenge.tasks",)
+DOMAIN_NAME = "engagiert.be"
 
 ###############################################################################
 ### DJANGO EASY THUMBNAILS SECTION                                          ###

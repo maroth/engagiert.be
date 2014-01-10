@@ -1,10 +1,9 @@
 {% load i18n %}
-{% load accounttags %}
 
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>{% block title %}Participe{% endblock %}</title>
+        <title>{% block title %}Engagiert.be - Bern bessern{% endblock %}</title>
 
         <script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.9.1.js"></script>
         <script src="http://ajax.microsoft.com/ajax/jquery.ui/1.10.0/jquery-ui.js"></script>
@@ -43,14 +42,14 @@
             </noscript>
 
             {% block header %}
-                <a href="/"><img src="{{ MEDIA_URL }}img/logo_285x93.jpg" alt="participe logo"/></a>
+                <a href="/">
+                    <img src="{{ MEDIA_URL }}img/logo_285x93.jpg" alt="Engagiert.be logo" class="logo-image" />
+                </a>
                 <div class="pull-right">
                     <form class="form-inline" id="locale" action="/i18n/setlang/" method="POST">{% csrf_token %}
                         <div class="btn-toolbar">
                             <div class="btn-group">
                                 {% if user.is_authenticated %}
-                                    {% as_user_action_required_count request as as_user_count %}
-                                    {% as_admin_action_required_count request as as_admin_count %}
                                     <a class="btn" href='/challenges/create/'>Engagement erfassen</a>
                                     <a class="btn" href='/accounts/profile/view/'>{% trans "My profile" %}
                                         {% if as_user_count %}

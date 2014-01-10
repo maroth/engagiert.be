@@ -11,7 +11,6 @@ from django.utils.translation import ugettext as _
 from captcha.fields import CaptchaField
 
 from models import UserProfile
-from participe.core.countries import COUNTRIES
 import participe.core.html5_widgets as widgets
 
 

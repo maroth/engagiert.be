@@ -2,7 +2,6 @@ import os
 import datetime
 import random
 import string
-import hashlib
 
 from django.conf import settings
 from django.contrib.auth import authenticate, login
@@ -21,18 +20,15 @@ from django.utils.http import int_to_base36, base36_to_int
 from django.utils.translation import ugettext as _
 
 from auth_remember import remember_user
-from social_auth.utils import setting
 from templated_email import send_templated_mail
 
 from forms import (LoginForm, UserForm, UserProfileForm, UserEditForm,
                    ResetPasswordForm, RestorePasswordForm, ChangeAvatarForm,
                    AvatarCropForm)
 from models import UserProfile
-from utils import get_user_participations, get_admin_challenges
 from participe.account.models import PRIVACY_MODE
 from participe.core.user_tests import user_profile_completed
-from participe.challenge.models import (Challenge, Participation,
-                                        CHALLENGE_STATUS, PARTICIPATION_STATE)
+from participe.challenge.models import (Challenge, CHALLENGE_STATUS, PARTICIPATION_STATE)
 from participe.organization.models import Organization
 
 try:
@@ -338,39 +334,7 @@ def view_profile(request, user_id):
 def view_myprofile(request):
     user = request.user
 
-    user_participations = get_user_participations(user).order_by("challenge__start_date")
-
-    user_participations_action_required = user_participations.filter(
-        status=PARTICIPATION_STATE.WAITING_FOR_SELFREFLECTION
-    )
-
-    user_participations_upcoming = user_participations.filter(
-        challenge__status=CHALLENGE_STATUS.UPCOMING,
-        status__in=[
-            PARTICIPATION_STATE.WAITING_FOR_CONFIRMATION,
-            PARTICIPATION_STATE.CONFIRMED
-        ])
-
-    user_participations_completed = user_participations.filter(
-        challenge__status=CHALLENGE_STATUS.COMPLETED,
-        status__in=[
-            PARTICIPATION_STATE.WAITING_FOR_ACKNOWLEDGEMENT,
-            PARTICIPATION_STATE.ACKNOWLEDGED
-        ])
-
     admin_challenges = get_admin_challenges(user).order_by("start_date")
-
-    admin_challenges_action_required = admin_challenges.filter(
-        Q(pk__in=Participation.objects.filter(
-            status__in=[
-                PARTICIPATION_STATE.WAITING_FOR_CONFIRMATION,
-                PARTICIPATION_STATE.WAITING_FOR_ACKNOWLEDGEMENT
-            ]).values_list("challenge_id", flat=True)
-        ) | Q(
-            start_date__lt=datetime.date.today(),
-            status=CHALLENGE_STATUS.UPCOMING
-        )
-    )
 
     admin_challenges_upcoming = admin_challenges.exclude(
         pk__in=Participation.objects.filter(
@@ -391,18 +355,6 @@ def view_myprofile(request):
         status=CHALLENGE_STATUS.COMPLETED
     )
 
-    participations_cancelled_by_user = Participation.objects.filter(
-        user=user,
-        challenge__is_deleted=False,
-        status=PARTICIPATION_STATE.CANCELLED_BY_USER,
-    )
-
-    participations_cancelled_by_admin = Participation.objects.filter(
-        user=user,
-        challenge__is_deleted=False,
-        status=PARTICIPATION_STATE.CANCELLED_BY_ADMIN,
-    )
-
     try:
         profile = get_object_or_404(UserProfile, user=user)
     except:
@@ -411,26 +363,11 @@ def view_myprofile(request):
                               RequestContext(request, {
                                   "user": user,
                                   "profile": profile,
-                                  "user_participations":
-                                      [(user_participations_action_required,
-                                        _("Action required")),
-                                       (user_participations_upcoming,
-                                        _("Upcoming")),
-                                       (user_participations_completed,
-                                        _("Completed")), ],
                                   "admin_challenges":
-                                      [(admin_challenges_action_required,
-                                        _("Action required")),
-                                       (admin_challenges_upcoming,
+                                      [(admin_challenges_upcoming,
                                         _("upcoming")),
                                        (admin_challenges_completed,
                                         _("completed")), ],
-                                  "participations_cancelled_by_user":
-                                      participations_cancelled_by_user,
-                                  "participations_cancelled_by_admin":
-                                      participations_cancelled_by_admin,
-                                  "PARTICIPATION_STATE": PARTICIPATION_STATE,
-                                  "CHALLENGE_STATUS": CHALLENGE_STATUS,
                               }))
 
 

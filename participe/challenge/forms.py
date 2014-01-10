@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 from datetime import datetime
 
@@ -5,11 +7,9 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext as _
 
-from models import (Challenge, Participation, CHALLENGE_MODE,
-                    PARTICIPATION_STATE)
-import participe.core.html5_widgets as widgets
+from models import Challenge, PARTICIPATION_STATE
 
-from tinymce.widgets import TinyMCE
+import participe.core.html5_widgets as widgets
 
 class CreateChallengeForm(forms.ModelForm):
     def __init__(self, user, *args, **kwargs):
@@ -59,17 +59,25 @@ class CreateChallengeForm(forms.ModelForm):
                   "organization"]
         widgets = {
             "name": forms.TextInput(
-                attrs={"placeholder": _("Challenge name")}),
+                attrs={
+                    "placeholder": u"Ein sprechender Titel für dein Engagement",
+                    "class": "input-xl"
+                }),
             "location": forms.TextInput(
-                attrs={"placeholder": _("Location")}),
+                attrs={"placeholder": "Wo findet dein Engagement statt? Wie kommt man dahin?",
+                       "class": "input-xl"}),
+
             "duration": widgets.NumberInput(
                 attrs={'min': '1', 'max': '999999', 'step': '1',
                        "class": "input-mini"}),
 
             "contact": forms.TextInput(
-                attrs={"placeholder": _("Contact")}),
+                attrs={"placeholder": "Wie können dich Menschen kontaktieren, welche mitmachen wollen?",
+                       "class": "input-xl"}),
+
             "link": forms.TextInput(
-                attrs={"placeholder": _("Link")}),
+                attrs={"placeholder": "Link zu weiteren Informationen zu deinem Engagement",
+                       "class": "input-xl"}),
 
             #"start_date": widgets.DateInput(attrs={"class": "input-small"}),
             #"start_time": widgets.TimeInput(
@@ -118,9 +126,6 @@ class EditChallengeForm(forms.ModelForm):
     def __init__(self, user, *args, **kwargs):
         super(EditChallengeForm, self).__init__(*args, **kwargs)
         self.user = user
-
-        self.fields['name'].widget.attrs['class'] = 'disabled input-xxlarge'
-        self.fields['name'].widget.attrs['readonly'] = True
 
         self.contact_choices = [
             ("me", "%s (%s)" % (self.instance.contact_person.get_full_name(),
@@ -206,113 +211,3 @@ class EditChallengeForm(forms.ModelForm):
                     [_("This field is required."), ])
                 del self.cleaned_data["alt_person_phone"]
         return self.cleaned_data
-
-    def save(self, commit=True):
-        instance = super(EditChallengeForm, self).save(commit=False)
-        if commit:
-            instance.save()
-
-
-class SignupChallengeForm(forms.ModelForm):
-    def __init__(self, user, challenge, *args, **kwargs):
-        super(SignupChallengeForm, self).__init__(*args, **kwargs)
-        self.user = user
-        self.challenge = challenge
-
-        if self.instance and self.instance.pk:
-            pass
-
-    class Meta:
-        model = Participation
-        fields = ["application_text", "share_on_FB", ]
-        widgets = {
-            "application_text": forms.Textarea(
-                attrs={"placeholder": _("Application text")}),
-        }
-
-    def save(self, commit=True):
-        instance = super(SignupChallengeForm, self).save(commit=False)
-        instance.user = self.user
-        instance.challenge = self.challenge
-        instance.date_created = datetime.now()
-
-        # If instance if Free-for-All, set Participation status to "Confirmed"
-        if self.challenge.application == CHALLENGE_MODE.FREE_FOR_ALL:
-            instance.status = PARTICIPATION_STATE.CONFIRMED
-        else:
-            instance.status = PARTICIPATION_STATE.WAITING_FOR_CONFIRMATION
-
-        if not self.cleaned_data.get("share_on_FB", ""):
-            instance.share_on_FB = False
-
-        if commit:
-            instance.save()
-
-
-class WithdrawSignupForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(WithdrawSignupForm, self).__init__(*args, **kwargs)
-
-        if self.instance and self.instance.pk:
-            pass
-
-    class Meta:
-        model = Participation
-        fields = ["cancellation_text", ]
-        widgets = {
-            "cancellation_text": forms.Textarea(
-                attrs={"placeholder": _("Leave a reason")}),
-        }
-
-    def clean_cancellation_text(self):
-        # XXX Issue #0081
-        # If user opens Challenge details page, e.g. 4 times, and pushes
-        # "Participate" at first time, he signs up to challenge.
-        # If user pushes "Participate" on 2nd, 3rd and other pages, following
-        # prevents unpredictable behaviour.
-        text = self.cleaned_data["cancellation_text"]
-        if len(text) < 1:
-            self._errors["cancellation_text"] = self.error_class(
-                [_("This field is required."), ])
-            del self.cleaned_data["cancellation_text"]
-
-        try:
-            return self.cleaned_data["cancellation_text"]
-        except:
-            return self.cleaned_data
-
-    def save(self, commit=True):
-        instance = super(WithdrawSignupForm, self).save(commit=False)
-        instance.status = PARTICIPATION_STATE.CANCELLED_BY_USER
-        instance.date_cancelled = datetime.now()
-
-        if commit:
-            instance.save()
-
-
-class SelfreflectionForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(SelfreflectionForm, self).__init__(*args, **kwargs)
-
-        if self.instance and self.instance.pk:
-            pass
-
-    class Meta:
-        model = Participation
-        fields = [
-            "selfreflection_activity_text",
-            "selfreflection_learning_text", ]
-        widgets = {
-            "selfreflection_activity_text": forms.Textarea(
-                attrs={"placeholder": _("Self-reflection activity")}),
-            "selfreflection_learning_text": forms.Textarea(
-                attrs={"placeholder": _("Self-reflection learning")}),
-        }
-
-    def save(self, commit=True):
-        instance = super(SelfreflectionForm, self).save(commit=False)
-        instance.status = PARTICIPATION_STATE.WAITING_FOR_ACKNOWLEDGEMENT
-        instance.date_selfreflection = datetime.now()
-
-        if commit:
-            instance.save()

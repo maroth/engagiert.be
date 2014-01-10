@@ -12,8 +12,9 @@
 
     <form id="edit-form" enctype="multipart/form-data" action="." class="" method="post">{% csrf_token %}
         <div class="row">
-            <div class="span12 well">
-                <div class="input">{% trans "Avatar:" %}</div>
+            <div class="span12">
+
+                <div class="input">Bild: </div>
                 <img src="{{ form.instance.avatar|default:'img/default.jpg'|thumbnail_url:'span9_wide' }}" alt="">
 
                 <table>

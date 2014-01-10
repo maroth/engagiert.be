@@ -5,11 +5,12 @@
     <div class="hero-unit title-hero">
     </div>
     <div class="hero-unit centered-text ">
-        <h3 on-image>Engagiere dich. In Bern.</h3>
+        <h3 on-image>Engagiert.be - Bern bessern</h3>
         <p on-image>
             Auf Engagiert.be kannst du freiwillige Engagements finden und
             erfassen. Möchtest du neue Leute kennen lernen, Spass haben und dabei den
-            Raum Bern ein kleines Bisschen besser machen? <a href="/challenges/">
+            Raum Bern ein kleines Bisschen besser machen? Etwas zur Kultur,
+            zum sozialen Zusammenhalt oder zum Umweltschutz beitragen? <a href="/challenges/">
             Finde jetzt dein erstes Engagement auf Engagiert.be</a>!
         </p>
     </div>
@@ -36,9 +37,15 @@
                 gebrauchen? Schreibe deine Aktion hier aus, damit Gleichgesinnte mitmachen können. Willkommen sind
                 alle Arten von Einsätzen.
             </p>
+            {% if request.user.is_authenticated %}
+            <p>
+                <a href="/challenges/create/">Schreibe ein Engagement aus!</a>
+            </p>
+            {% else %}
             <p>
                 Um ein Engagement ausschreiben zu können, brauchst du ein <a href="/accounts/signup">Benutzerkonto</a>.
             </p>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -14,6 +14,12 @@ h3 {
     line-height: 110%;
 }
 
+.input-xl {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px!important;
+}
+
 .title-hero {
     background: url(../img/bern_altstadt.jpg) no-repeat center center fixed;
         -webkit-background-size: cover;
@@ -23,8 +29,8 @@ h3 {
     min-height: 150px;
 }
 
-.on-image {
-    color: white;
+.logo-image {
+    margin: 20px 0px 20px 0px ;
 }
 
 .footer ul {

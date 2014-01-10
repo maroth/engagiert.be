@@ -1,6 +1,5 @@
 {% extends 'challenge_base.html' %}
 {% load i18n %}
-{% load accounttags %}
 
 {% block title %}{% trans "Challenge details" %} - {{ block.super }}{% endblock %}
 {% load thumbnail %}
@@ -22,9 +21,9 @@
                 </p>
                 <p>
                     {{ challenge.start_date }}
-                    | {{ challenge.start_time|date:"G:i"|default:"0:00" }}
+                    | {{ challenge.start_time|date:"G:i"|default:"0:00" }} Uhr
                     | {{ challenge.location }}
-                    | {{ challenge.duration }}h
+                    | {{ challenge.duration }} Stunde{% if challenge.duration != 1 %}n{% endif %}
                 </p>
                 {% if challenge.organization and not challenge.organization.is_deleted %}
                     <p>
@@ -33,11 +32,9 @@
                     </p>
                 {% endif %}
                 <blockquote>
-                    <p>{{ challenge.description|safe|linebreaks }}</p>
+                    {{ challenge.description|safe|linebreaks }}
                 </blockquote>
-
             </div>
-
         </div>
         <div class="span4">
             {% if user.is_authenticated %}
@@ -62,34 +59,37 @@
                 </div>
             {% endif %}
 
-            <div class="well">
-                {% if user.social_auth.all %}
-                    {% with "facebook" as service %}
-                        <div class="input"><a href="#" onclick="share_on_fb();"><img src="{{ MEDIA_URL }}img/share_on_FB.jpg" alt="Share on {{ service }}"/></div>
-                        <div class="input"><input type="hidden"><a id="share-on-fb" href="http://www.facebook.com/sharer.php?s=100&p[url]={{ request.build_absolute_uri }}&p[images][0]=http://{{ request.get_host }}{{ challenge.avatar.url }}&p[title]={{ challenge.name }}&p[summary]={{ challenge.description }}" target="_blank" title="Share on {{ service }}"></a></input></div>
-                    {% endwith %}
-                {% endif %}
-                <p>
-                    <strong>{% trans "Link to this page" %}</strong>
-                    <input type="text" readonly="readonly" onclick="$(this).select();" value="{{ request.build_absolute_uri }}"/>
-                </p>
-            </div>
+            {% if user.social_auth.all %}
+                {% with "facebook" as service %}
+                    <div class="well">
+                        <div class="input">
+                            <a href="#" onclick="share_on_fb();">
+                                <img src="{{ MEDIA_URL }}img/share_on_FB.jpg" alt="Share on {{ service }}"/>
+                            </a>
+                        </div>
+                        <input type="hidden">
+                            <a id="share-on-fb" href="http://www.facebook.com/sharer.php?s=100&p[url]={{ request.build_absolute_uri }}&p[images][0]=http://{{ request.get_host }}{{ challenge.avatar.url }}&p[title]={{ challenge.name }}&p[summary]={{ challenge.description }}" target="_blank" title="Share on {{ service }}">
+                            </a>
+                        </input>
+                    </div>
+                {% endwith %}
+            {% endif %}
         </div>
-    </div>
 
-    <script type="text/javascript">
-        function share_on_fb(){
-            try {
-                redirect_to = $("#share-on-fb").attr("href");
-                if ($("#id_share_on_FB").is(":checked") && redirect_to){
-                    height = 300;
-                    width = 500;
-                    centeredY = (screen.height - height)/2;
-                    centeredX = (screen.width - width)/2;
-                    window.open(redirect_to, "_blank", "height="+height+",width="+width+",left="+centeredX+",top="+centeredY).focus();
+        <script type="text/javascript">
+            function share_on_fb(){
+                try {
+                    redirect_to = $("#share-on-fb").attr("href");
+                    if ($("#id_share_on_FB").is(":checked") && redirect_to){
+                        height = 300;
+                        width = 500;
+                        centeredY = (screen.height - height)/2;
+                        centeredX = (screen.width - width)/2;
+                        window.open(redirect_to, "_blank", "height="+height+",width="+width+",left="+centeredX+",top="+centeredY).focus();
+                    }
+                } catch(err) {
                 }
-            } catch(err) {
             }
-        }
-    </script>
+        </script>
+    </div>
 {% endblock %}

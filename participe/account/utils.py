@@ -1,7 +1,6 @@
 from django.db.models import Q
 
-from participe.challenge.models import (Participation, Challenge,
-        PARTICIPATION_STATE)
+from participe.challenge.models import Challenge
 
 #TODO Expand django.contrib.auth.models.User and move methods there
 
@@ -11,14 +10,6 @@ def is_challenge_admin(user, challenge):
         return True
     else:
         return False
-
-def get_user_participations(user):
-    # Get all user participations
-    user_participations = Participation.objects.filter(
-            user=user,
-            challenge__is_deleted=False
-            )
-    return user_participations
 
 def get_admin_challenges(user):
     # Get challenges, where user is admin

@@ -12,7 +12,7 @@
     </ul> 
 
     <div class="main_container">
-        <style type="text/css">
+        <style type="text/css" scoped>
             ul li {list-style: none;}
             #ui-datepicker-div {display: none;}
         </style>
@@ -22,9 +22,9 @@
                 <div class="span12">
                     <h3>{% trans "Create a challenge" %}</h3>
                     <p>
-                        {% blocktrans %}You can enter your Challenge here. If you have any questions, don't hesitate to <a href="mailto:markus.roth@participe.ch">contact Markus</a>.{% endblocktrans %}
+                        Hier kannst du ein Engagement eintragen, damit es auf Engagiert.be erscheint und sich
+                        Gleichgesinnte bei dir melden können.
                     </p>
-
                     <div {% if form.name.errors %}class="control-group error"{% else %}class="input"{% endif %}>
                         <h5>Titel</h5>
                         {{ form.name }}{{ form.name.errors }}
