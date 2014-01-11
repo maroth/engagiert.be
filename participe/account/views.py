@@ -119,7 +119,7 @@ def signup(request):
                 context={
                     "user": user,
                     "confirmation_link": confirmation_link,
-                    "subject": _("Welcome to Participe"),
+                    "subject": "Willkommen bei Engagiert.be"
                 }, )
 
             return render_to_response('account_confirmation_email.html',

@@ -53,11 +53,12 @@
                         {{ form.duration }} {% trans "hours" %}
                     </div>
 
+                    <!--
                     {% if not form.organization.is_hidden %}
                         <div {% if form.organization.errors %}class="control-group error"{% else %}class="input"{% endif %}>
                             {% trans "Affiliate with organization" %} {{ form.organization }}{{ form.organization.errors }}
                         </div>
-                    {% endif %}
+                    {% endif %} -->
 
 
                     <div {% if form.contact.errors %}class="text-error"{% else %}class="input"{% endif %}>

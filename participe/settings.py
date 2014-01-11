@@ -217,7 +217,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_URL          = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/accounts/profile/view/'
+LOGIN_REDIRECT_URL = '/challenges/'
 LOGIN_ERROR_URL    = '/login-error/'
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/accounts/profile/view/'

@@ -40,7 +40,8 @@
             {% if user.is_authenticated %}
                 {% if is_admin %}
                     <div class="well">
-                        <p><a class="btn btn-small" href="{{ challenge.get_edit_url }}">{% trans "Edit challenge" %}</a></p>
+                        <a class="btn btn-success btn-small" href="{{ challenge.get_edit_url }}">Engagement
+                            bearbeiten</a>
                     </div>
                 {% endif %}
             {% endif %}

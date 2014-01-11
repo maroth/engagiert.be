@@ -24,7 +24,7 @@ def challenge_create(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            return redirect("challenge_list")
+            return redirect(form.instance.get_absolute_url())
 
     return render_to_response('challenge_create.html',
                               RequestContext(request, {'form': form}))
@@ -99,7 +99,7 @@ def challenge_edit(request, challenge_id):
                 challenge.is_deleted = True
                 challenge.save()
 
-            return redirect("challenge_list")
+            return redirect(challenge.get_absolute_url())
 
     return render_to_response('challenge_edit.html', RequestContext(request, {'form': form}))
 
