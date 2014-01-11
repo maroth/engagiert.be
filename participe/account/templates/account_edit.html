@@ -11,7 +11,7 @@
 
 
     <form id="edit" action="." method="post">{% csrf_token %}
-        <h2>{% trans "Edit profile" %}</h2>
+        <h2>Profil bearbeiten</h2>
         <div class="row">
             <div class="span5 well">
                 <table>
@@ -24,16 +24,17 @@
                         </tr>
                     {% endfor %}
                 </table>
-                <div class="input"><input type="submit" form="edit" class="btn btn-primary" value="{% trans 'Save changes' %}" /></div>
+                <div class="input"><input type="submit" form="edit" class="btn btn-success"
+                                          value="Speichern" /></div>
             </div>
-            <div class="well btn-group span5">
+            <div class="span5">
                 {% if profile.avatar %}
                     <!--<a class="btn" href="{% url change_avatar %}">{% trans "Change profile image" %}</a>-->
                 {% else %}
                     <!--<a class="btn" href="{% url add_avatar %}">{% trans "Add profile image" %}</a>-->
                 {% endif %}
-                <a class="btn" href="{% url reset_password %}">{% trans "Change password" %}</a>
-                <a class="btn" href="{% url delete_profile %}">{% trans "Delete profile" %}</a>
+                <a class="btn" href="{% url reset_password %}">Neues Passwort wählen</a>
+                <a class="btn" href="{% url delete_profile %}">Profil löschen</a>
             </div>
         </div>
     </form>

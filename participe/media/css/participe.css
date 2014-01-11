@@ -20,6 +20,10 @@ h3 {
     padding: 20px!important;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
 .title-hero {
     background: url(../img/bern_altstadt.jpg) no-repeat center center fixed;
         -webkit-background-size: cover;

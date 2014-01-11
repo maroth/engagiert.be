@@ -10,7 +10,7 @@ Ursprung und Lizenz
 Engagiert.be ist eine Abspaltung des Projekts Participe, und verwendet dessen Quellcode als Basis. Wie Participe ist
 Engagiert.be unter der [Affero General Public License](http://www.gnu.org/licenses/agpl-3.0.html) lizenziert. Das
 heisst dass alle den Quellcode unentgeltlich verwenden können, aber sich verpflichten alle ihre Änderunbgen am Code
-allen Benutzern ihrer Software unter der gleichen Lizenz weiter zu geben.
+allen Benutzer_innen ihrer Software unter der gleichen Lizenz weiter zu geben.
 
 Mithilfe
 --------

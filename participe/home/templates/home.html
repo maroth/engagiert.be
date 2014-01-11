@@ -5,45 +5,47 @@
     <div class="hero-unit title-hero">
     </div>
     <div class="hero-unit centered-text ">
-        <h3 on-image>Engagiert.be - Die Pinwand für freiwillige Einsätze in Bern</h3>
-        <p on-image>
-            Engagiert.be ist eine Pinwand, auf der einmalige, freiwillige Engagements ausgeschrieben werden können.
+        <h3 on-image>Engagiert.be - Eine Pinnwand für freiwillige Einsätze in Bern</h3>
+        <p class="text-justify">
+            Engagiert.be ist eine Pinnwand, auf der einmalige, freiwillige Engagements ausgeschrieben werden können.
             Möchtest du neue Leute kennen lernen, Spass haben und dabei den
-            Raum Bern ein kleines Bisschen besser machen? Etwas zur Kultur,
+            Raum Bern ein kleines bisschen besser machen? Etwas zur Kultur,
             zum sozialen Zusammenhalt oder zum Umweltschutz beitragen? <a href="/challenges/">
-            Finde jetzt dein erstes Engagement auf Engagiert.be</a>!
+            Finde jetzt dein erstes Engagement auf Engagiert.be!</a>
         </p>
     </div>
     <div class="row">
         <div class="span6">
             <h4>
-                Es gibt nichts Gutes ausser man tut es
+                Möchtest du dich engagieren?
             </h4>
-            <p>
-                Es gibt viele engagierte und motivierte Menschen, die dazu beitragen, dass unsere Welt angenehm,
-                interessant und gesund bleibt. Engagiert.be bietet  dir die Möglichkeit,
-                dich mit diesen Menschen zu verbinden und zum gelingen ihrer Projekte etwas beizutragen.
+            <p class="text-justify">
+                Es gibt viele unterstützenswerte Projekte, die dazu beitragen,  dass Bern angenehm, interessant und
+                gesund bleibt. Engagiert.be bietet  dir die Möglichkeit, diese zu finden und zu ihrem Gelingen
+                beizutragen.
             </p>
-                Hier findest du <a href="/challenges">viele Möglichkeiten dich zu engagieren</a>!
+                <a href="/challenges">Finde jetzt eine Möglichkeit dich zu engagieren!</a>
             <p>
             </p>
         </div>
         <div class="span6">
             <h4>
-                Ein wenig Hilfe will das Glück schon haben
+                Suchst du engagierte Menschen?
             </h4>
-            <p>
-                Setzt du dich für etwas ein, was dir wichtig ist? Könntest du dabei tatkräftige Unterstützung
-                gebrauchen? Schreibe deine Aktion hier aus, damit Gleichgesinnte mitmachen können. Willkommen sind
-                alle Arten von Einsätzen in deb bereichen Kultur, Soziales oder Umweltpflege.
+            <p class="text-justify">
+                Setzt du dich für etwas ein, das dir wichtig ist? Könntest du dabei tatkräftige Unterstützung
+                gebrauchen? Schreibe deine Veranstaltung oder Aktion hier aus, damit Gleichgesinnte mitmachen können.
+                Willkommen sind alle möglichen Einsätze, die den <a href="/about/rules/">Spielregeln</a>
+                entsprechen.
             </p>
             {% if request.user.is_authenticated %}
             <p>
-                <a href="/challenges/create/">Schreibe ein Engagement aus!</a>
+                <a href="/challenges/create/">Schreibe jetzt dein Engagement <aus></aus>!</a>
             </p>
             {% else %}
             <p>
-                Um ein Engagement ausschreiben zu können, brauchst du ein <a href="/accounts/signup">Benutzerkonto</a>.
+                Um ein Engagement ausschreiben zu können, brauchst du ein <a href="/accounts/signup">Profil bei
+                Engagiert.be</a>.
             </p>
             {% endif %}
         </div>

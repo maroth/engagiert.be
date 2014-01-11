@@ -51,15 +51,8 @@
                             <div class="btn-group">
                                 {% if user.is_authenticated %}
                                     <a class="btn" href='/challenges/create/'>Engagement erfassen</a>
-                                    <a class="btn" href='/accounts/profile/view/'>{% trans "My profile" %}
-                                        {% if as_user_count %}
-                                            <span class="badge badge-warning" title="{% trans 'Number of challenges, required an action from you, as a participant' %}">{{ as_user_count }} {% trans "actions required" %}</span>
-                                        {% endif %}
-                                        {% if as_admin_count %}
-                                             <span class="badge badge-important" title="{% trans 'Number of challenges, required an action from you, as an admin' %}">{{ as_admin_count }} {% trans "admin actions required" %}</span>
-                                        {% endif %}
-                                    </a>
-                                    <a class="btn" href='/accounts/logout/'>{% trans "Log out" %}</a>
+                                    <a class="btn" href='/accounts/profile/view/'>Meine Engagements</a>
+                                    <a class="btn" href='/accounts/logout/'>Abmelden</a>
                                 {% else %}
                                     <a class="btn" href="{% url socialauth_begin 'facebook' %}?{{ redirect_querystring }}">
                                         <img src="{{ MEDIA_URL }}img/footer-link-fb.png" alt="{% trans "login with facebook" %}">

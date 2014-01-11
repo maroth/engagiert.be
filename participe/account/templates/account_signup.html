@@ -29,8 +29,10 @@
     <form id="signup" enctype="multipart/form-data" action="." method="post">{% csrf_token %}
         <div class="row">
             <div class="span6 offset3 well">
-                <h3>Neues Konto erfassen</h3>
-                <p>Um auf Engagiert.be eigene Engagements auszuschreiben brauchst du ein Benutzerkonto.</p>
+                <h3>Bei Engagiert.be anmelden</h3>
+                <p>Um auf Engagiert.be eigene Engagements auszuschreiben brauchst du ein Konto. Um bei
+                    ausgeschriebenen Engagements mitzumachen, brauchst du dich nicht anzumelden - kontaktiere
+                    direkt die Organisator_innen der <a href="/challenges/">Engagements</a>.</p>
                 <table cellpadding="5">
                     {% for field in uform%}
                     <tr>
@@ -50,7 +52,9 @@
                 </table>
 
                 <p>Indem du dich anmeldest, akzeptierst du unsere <a href="/about/rules/">Spielregeln</a>.</p>
-                <div class="input"><input type="submit" form="signup" class="btn btn-primary btn-large" value="{% trans 'Sign up' %}" /></div>
+
+                <p><input type="submit" form="signup" class="btn btn-success btn-large" value=
+                        "{% trans 'Sign up' %}" /></p>
             </div>
         </div>
     </form>
