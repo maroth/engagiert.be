@@ -28,9 +28,9 @@
             </div>
             <div class="well btn-group span5">
                 {% if profile.avatar %}
-                    <a class="btn" href="{% url change_avatar %}">{% trans "Change profile image" %}</a>
+                    <!--<a class="btn" href="{% url change_avatar %}">{% trans "Change profile image" %}</a>-->
                 {% else %}
-                    <a class="btn" href="{% url add_avatar %}">{% trans "Add profile image" %}</a>
+                    <!--<a class="btn" href="{% url add_avatar %}">{% trans "Add profile image" %}</a>-->
                 {% endif %}
                 <a class="btn" href="{% url reset_password %}">{% trans "Change password" %}</a>
                 <a class="btn" href="{% url delete_profile %}">{% trans "Delete profile" %}</a>

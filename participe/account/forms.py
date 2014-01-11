@@ -51,7 +51,7 @@ class UserForm(forms.ModelForm):
             widget=forms.PasswordInput(
                     render_value=True,
                     attrs={"min_length": 6, "max_length": 30,
-                            "placeholder": _("Retry"), "value": ""}))
+                            "placeholder": "Passwort wiederholen", "value": ""}))
 
     class Meta:
         model = User
@@ -135,8 +135,8 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ["avatar", "receive_newsletter"]
-            #"address_1", "address_2", "postal_code", "city", "country", "gender",
+        fields = ["receive_newsletter"]
+            #"address_1", "address_2", "postal_code", "city", "country", "gender", "avatar"
             #"birth_day", "phone_number", "receive_newsletter", "privacy_mode",
         """
         widgets = {
