@@ -1,7 +1,7 @@
-{% extends 'account_base.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %}{% trans "Profile" %} - {{ block.super }}{% endblock %}
+{% block title %}Meine Engagements - {{ block.super }}{% endblock %}
 {% block extra_script %}
 <script type="text/javascript">
     $(window).load(function() {$('.thumbnail').height(Math.max.apply(null, $(".thumbnail").map(function () { return $(this).height();}).get()))});
@@ -9,7 +9,15 @@
 {% endblock %}
 {% load thumbnail %}
 
-{% block extra_content %}
+{% block content %}
+
+    <ul class="nav nav-tabs">
+        <li class=""><a href="/">{% trans "What is Participe?" %}</a></li>
+        <li class=""><a href="{% url challenge_list %}">{% trans "Challenges" %}</a></li>
+        <!-- <li class=""><a href="{% url organization_list %}">{% trans "Organizations" %}</a></li> -->
+        <li class="active"><a>Meine Engagements</a></li>
+    </ul>
+
     <div class="row">
         <div class="span3">
             <div class="well">

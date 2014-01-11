@@ -1,13 +1,20 @@
-{% extends 'challenge_base.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %}{% trans "Challenge details" %} - {{ block.super }}{% endblock %}
+{% block title %}{{ challenge.name }} - {{ block.super }}{% endblock %}
 {% load thumbnail %}
 
 {% block extra_script %}
 {% endblock %}
 
-{% block extra_content %}
+{% block content %}
+    <ul class="nav nav-tabs">
+        <li class=""><a href="/">{% trans "What is Participe?" %}</a></li>
+        <li class=""><a href="{% url challenge_list %}">{% trans "Challenges" %}</a></li>
+        <!-- <li class=""><a href="{% url organization_list %}">{% trans "Organizations" %}</a></li> -->
+        <li class="active"><a href="{% url challenge_create %}">{{ challenge.name }}</a></li>
+    </ul>
+
     <div class="row ">
         <div class="span8">
             <div class="well">
